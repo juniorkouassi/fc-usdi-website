@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USDI FC — Union Sportive de la Diaspora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" crossorigin="anonymous" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --black:     #080808;
+      --black-mid: #0d0d0d;
+      --dark:      #1a1a1a;
+      --gold:      #FFD700;
+      --gold-dim:  rgba(255,215,0,0.35);
+      --white:     #ffffff;
+      --gray-1:    #2a2a2a;
+      --gray-2:    #444;
+      --gray-3:    #666;
+      --gray-4:    #999;
+      --green:     #22c55e;
+      --red:       #ef4444;
+      --font-d:    'Bebas Neue', sans-serif;
+      --font-b:    'Inter', sans-serif;
+      --tr:        0.2s ease;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font-b); background:var(--black); color:var(--white); line-height:1.5; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce-bar {
+      background:var(--gold); padding:0 1rem; height:32px;
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:0.65rem; font-weight:700; color:#000;
+    }
+    .announce-bar a { color:#000; }
+    .announce-socials { display:flex; gap:0.4rem; }
+    .announce-socials a {
+      width:22px; height:22px; background:rgba(0,0,0,0.15);
+      border-radius:3px; display:flex; align-items:center; justify-content:center;
+      font-size:0.72rem; color:#000;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position:sticky; top:0; z-index:200;
+      background:var(--black-mid); height:54px;
+      display:flex; align-items:center; padding:0 1rem;
+      gap:0.75rem; border-bottom:1px solid var(--dark);
+      box-shadow:0 2px 12px rgba(0,0,0,.6);
+    }
+    .nav-logo { display:flex; align-items:center; gap:0.4rem; flex-shrink:0; }
+    .nav-logo img { width:32px; height:32px; object-fit:contain; }
+    .nav-logo-text { font-family:var(--font-d); font-size:1.2rem; color:var(--gold); letter-spacing:0.2em; }
+    .nav-spacer { flex:1; }
+    .lang-switcher {
+      display:flex; align-items:center;
+      border:1px solid var(--gray-1); overflow:hidden; flex-shrink:0;
+    }
+    .lang-btn {
+      display:flex; align-items:center; gap:0.2rem;
+      padding:0.25rem 0.45rem; background:none; border:none;
+      color:var(--gray-3); font-size:0.6rem; font-weight:700;
+      letter-spacing:0.06em; text-transform:uppercase; cursor:pointer;
+      font-family:var(--font-b);
+    }
+    .lang-btn .fi { width:16px; height:12px; border-radius:2px; }
+    .lang-btn.active { color:var(--gold); background:rgba(255,215,0,0.08); }
+    .lang-sep { width:1px; height:18px; background:var(--gray-1); }
+    .hamburger { display:flex; flex-direction:column; gap:4px; cursor:pointer; padding:4px; flex-shrink:0; }
+    .hamburger span { width:20px; height:2px; background:var(--white); display:block; transition:all var(--tr); }
+
+    /* Mobile nav drawer */
+    .nav-drawer {
+      display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.96); z-index:300; flex-direction:column;
+      padding:2rem 1.5rem;
+    }
+    .nav-drawer.open { display:flex; }
+    .nav-drawer-close {
+      align-self:flex-end; font-size:1.5rem; color:var(--gray-4);
+      cursor:pointer; margin-bottom:2rem;
+    }
+    .nav-drawer ul { display:flex; flex-direction:column; gap:0; }
+    .nav-drawer li a {
+      display:block; padding:1rem 0;
+      font-family:var(--font-d); font-size:1.8rem; color:var(--white);
+      letter-spacing:0.1em; border-bottom:1px solid var(--dark);
+      transition:color var(--tr);
+    }
+    .nav-drawer li a:hover { color:var(--gold); }
+    .nav-drawer .btn-join {
+      display:block; margin-top:1.5rem; padding:0.9rem;
+      background:var(--gold); color:#000; text-align:center;
+      font-family:var(--font-d); font-size:1.4rem; letter-spacing:0.15em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position:relative; height:420px; overflow:hidden; background:var(--black);
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:repeating-linear-gradient(45deg,#111 0,#111 6px,#0d0d0d 6px,#0d0d0d 12px);
+      opacity:0.5;
+    }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(0,0,0,0.3) 60%); }
+
+    /* Lion watermark */
+    .lion-bg {
+      position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1;
+    }
+    .lion-ghost {
+      position:absolute;
+      background:url('../img/lion-bg.png') no-repeat center/contain;
+      filter:grayscale(1) brightness(0.5);
+    }
+    .lion-ghost-1 { width:320px; height:320px; right:-40px; top:-40px; opacity:0.07; animation:lf1 10s ease-in-out infinite; }
+    .lion-ghost-2 { width:180px; height:180px; left:-20px; bottom:20px; opacity:0.035; animation:lf2 14s ease-in-out infinite; }
+    @keyframes lf1 { 0%,100%{transform:translateY(0) scale(1);opacity:0.07} 50%{transform:translateY(-12px) scale(1.03);opacity:0.1} }
+    @keyframes lf2 { 0%,100%{transform:translateY(0);opacity:0.035} 50%{transform:translateY(-8px);opacity:0.055} }
+
+    .hero-content {
+      position:absolute; inset:0; z-index:2;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:1.25rem 1.25rem 90px;
+    }
+    .hero-season { font-size:0.62rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.5rem; }
+    .hero-title {
+      font-family:var(--font-d); font-size:3.2rem; line-height:0.88;
+      color:var(--white); margin-bottom:0.75rem;
+    }
+    .hero-title em { color:var(--gold); font-style:normal; }
+    .hero-subtitle { font-size:0.7rem; color:rgba(255,255,255,0.45); margin-bottom:1rem; }
+    .hero-ctas { display:flex; gap:0.6rem; flex-wrap:wrap; }
+    .btn-primary {
+      padding:0.6rem 1.1rem; background:var(--gold); color:#000;
+      font-size:0.72rem; font-weight:700; letter-spacing:0.04em;
+      transition:all var(--tr);
+    }
+    .btn-ghost {
+      padding:0.6rem 1.1rem; border:1px solid rgba(255,255,255,0.2); color:var(--white);
+      font-size:0.72rem; letter-spacing:0.04em; transition:all var(--tr);
+    }
+
+    /* Hero badge */
+    .hero-badge {
+      position:absolute; right:1.25rem; top:1rem; z-index:2;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .hero-badge-ring {
+      width:90px; height:90px; border-radius:50%;
+      border:2px solid rgba(255,215,0,0.6);
+      box-shadow:0 0 30px rgba(255,215,0,0.2);
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,0.5); overflow:hidden;
+    }
+    .hero-badge-ring img { width:80px; height:80px; border-radius:50%; object-fit:cover; }
+    .hero-badge-label { font-size:0.5rem; color:rgba(255,215,0,0.5); letter-spacing:0.15em; text-align:center; margin-top:0.4rem; text-transform:uppercase; line-height:1.5; }
+
+    /* Score bar */
+    .score-bar {
+      position:absolute; bottom:0; left:0; right:0; z-index:2;
+      background:rgba(8,8,8,0.97); border-top:1px solid var(--gold-dim);
+      display:flex; overflow-x:auto; scrollbar-width:none;
+    }
+    .score-bar::-webkit-scrollbar { display:none; }
+    .score-item { flex:0 0 auto; padding:0.6rem 1rem; border-right:1px solid var(--dark); min-width:130px; }
+    .score-label { font-size:0.55rem; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.2rem; }
+    .score-value { font-family:var(--font-d); font-size:0.9rem; color:var(--white); }
+    .score-value .hl { color:var(--gold); }
+    .score-sub { font-size:0.55rem; color:var(--gray-3); }
+
+    /* ── GOLD LINE ── */
+    .gold-line { height:3px; background:var(--gold); }
+
+    /* ── TICKER ── */
+    .ticker { background:var(--black-mid); border-bottom:1px solid var(--dark); height:34px; display:flex; align-items:center; overflow:hidden; }
+    .ticker-label { flex-shrink:0; background:var(--gold); color:#000; padding:0 0.75rem; height:100%; display:flex; align-items:center; font-size:0.62rem; font-weight:700; letter-spacing:0.08em; white-space:nowrap; }
+    .ticker-track { display:flex; animation:ticker 25s linear infinite; white-space:nowrap; }
+    .ticker-track span { padding:0 1.5rem; font-size:0.65rem; color:var(--gray-4); border-right:1px solid var(--dark); }
+    .ticker-track span strong { color:var(--white); }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── SECTIONS ── */
+    .section-wrap { padding:0 1rem; }
+    .section-heading { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1rem; }
+    .section-heading h2 { font-family:var(--font-d); font-size:1.4rem; color:var(--white); letter-spacing:0.1em; }
+    .section-heading h2 span { color:var(--gold); }
+    .section-heading a { font-size:0.68rem; color:var(--gray-3); }
+
+    /* ── NEWS ── */
+    .news-section { background:var(--black); padding:1.5rem 0 1rem; }
+    .cat-tabs { display:flex; gap:0; overflow-x:auto; margin-bottom:1rem; border-bottom:1px solid var(--dark); scrollbar-width:none; }
+    .cat-tabs::-webkit-scrollbar { display:none; }
+    .cat-tab { flex-shrink:0; padding:0.5rem 0.9rem; font-size:0.65rem; font-weight:600; color:var(--gray-3); letter-spacing:0.06em; text-transform:uppercase; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; margin-bottom:-1px; }
+    .cat-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+
+    .news-featured {
+      position:relative; overflow:hidden; cursor:pointer; margin:0 1rem 1px;
+    }
+    .news-featured-img {
+      height:200px;
+      background:repeating-linear-gradient(45deg,#1a1a1a 0,#1a1a1a 6px,#111 6px,#111 12px);
+      display:flex; align-items:center; justify-content:center; font-size:3rem;
+    }
+    .news-featured-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(0,0,0,0) 50%); }
+    .news-featured-body { position:absolute; bottom:0; left:0; right:0; padding:1rem; }
+    .news-tag { display:inline-block; padding:0.12rem 0.5rem; background:var(--gold); color:#000; font-size:0.58rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.35rem; }
+    .news-featured-title { font-size:1rem; font-weight:900; color:var(--white); line-height:1.2; }
+    .news-meta { font-size:0.6rem; color:rgba(255,255,255,0.4); margin-top:0.3rem; }
+
+    .news-grid-mobile { display:flex; flex-direction:column; gap:1px; background:var(--dark); margin:1px 1rem 0; }
+    .news-card-sm {
+      background:var(--black-mid); display:flex; cursor:pointer;
+      transition:background var(--tr);
+    }
+    .news-card-sm:hover { background:#111; }
+    .news-card-sm-img {
+      width:90px; height:70px; flex-shrink:0;
+      background:repeating-linear-gradient(45deg,#1a1a1a 0,#1a1a1a 6px,#111 6px,#111 12px);
+      display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+    }
+    .news-card-sm-body { padding:0.6rem; flex:1; }
+    .news-card-sm-title { font-size:0.75rem; font-weight:600; color:var(--white); line-height:1.3; margin-top:0.2rem; }
+
+    /* ── STATS BAND ── */
+    .stats-band { background:var(--black-mid); border-top:1px solid var(--dark); border-bottom:1px solid var(--dark); display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--dark); }
+    .stat-item-m { background:var(--black-mid); padding:1rem 0; text-align:center; }
+    .stat-num-m { font-family:var(--font-d); font-size:2rem; color:var(--gold); line-height:1; }
+    .stat-lbl-m { font-size:0.58rem; color:var(--gray-2); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; }
+
+    /* ── FIXTURES ── */
+    .fixtures-section { background:var(--black); padding:1.5rem 0; }
+    .fixtures-scroll { display:flex; flex-direction:column; gap:1px; background:var(--dark); margin:0 1rem; }
+    .fixture-card {
+      background:var(--black-mid); padding:0.75rem 1rem;
+      border-left:3px solid var(--dark); display:flex; align-items:center; gap:0.75rem;
+    }
+    .fixture-card.result-win { border-left-color:var(--green); }
+    .fixture-card.result-loss { border-left-color:var(--red); }
+    .fixture-card.result-draw { border-left-color:var(--gold); }
+    .fixture-comp { font-size:0.58rem; color:var(--gray-3); letter-spacing:0.06em; text-transform:uppercase; flex-shrink:0; min-width:60px; }
+    .fixture-teams-m { flex:1; font-size:0.75rem; color:var(--white); font-weight:600; }
+    .fixture-score-m { font-family:var(--font-d); font-size:1.1rem; color:var(--gold); letter-spacing:0.05em; flex-shrink:0; }
+    .fixture-date-m { font-size:0.58rem; color:var(--gray-3); flex-shrink:0; }
+
+    /* ── SPOTLIGHT ── */
+    .spotlight-section {
+      position:relative; background:var(--black-mid); overflow:hidden;
+      height:160px; display:flex; align-items:center;
+      border-top:1px solid var(--dark); border-bottom:1px solid var(--dark);
+    }
+    .spotlight-bg { position:absolute; right:0; top:0; bottom:0; width:60%; background:repeating-linear-gradient(45deg,#111 0,#111 5px,#0d0d0d 5px,#0d0d0d 10px); }
+    .spotlight-fade { position:absolute; inset:0; background:linear-gradient(to right, var(--black-mid) 50%, transparent 85%); }
+    .spotlight-content { position:relative; z-index:2; padding:0 1.25rem; }
+    .spotlight-eye { font-size:0.6rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.35rem; }
+    .spotlight-name { font-family:var(--font-d); font-size:2.2rem; line-height:0.88; color:var(--white); margin-bottom:0.4rem; }
+    .spotlight-name span { color:var(--gold); }
+    .spotlight-detail { font-size:0.65rem; color:var(--gray-3); }
+
+    /* ── PLAYERS ── */
+    .players-section { background:var(--black); padding:1.5rem 0; }
+    .players-scroll-m { display:flex; gap:1px; background:var(--dark); overflow-x:auto; scrollbar-width:thin; scrollbar-color:var(--gold) var(--black); margin:0 1rem; }
+    .player-card-m { background:var(--black-mid); flex:0 0 150px; overflow:hidden; cursor:pointer; }
+    .player-card-img-m { height:120px; background:repeating-linear-gradient(45deg,#1a1a1a 0,#1a1a1a 6px,#111 6px,#111 12px); display:flex; align-items:center; justify-content:center; font-size:2rem; position:relative; }
+    .player-card-num-m { position:absolute; top:6px; right:6px; font-family:var(--font-d); font-size:1rem; color:var(--gold); }
+    .player-card-body-m { padding:0.6rem; }
+    .player-pos-m { display:inline-block; padding:0.1rem 0.4rem; font-size:0.58rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.2rem; }
+    .pos-FWD { background:rgba(255,215,0,0.15); color:var(--gold); }
+    .pos-MID { background:rgba(34,197,94,0.15); color:var(--green); }
+    .pos-DEF { background:rgba(59,130,246,0.15); color:#60a5fa; }
+    .pos-GK  { background:rgba(239,68,68,0.15); color:var(--red); }
+    .player-card-m h3 { font-size:0.78rem; font-weight:700; color:var(--white); margin-bottom:0.15rem; }
+    .player-team-m { font-size:0.58rem; color:var(--gray-3); margin-bottom:0.4rem; }
+    .player-stats-m { display:flex; gap:0.3rem; }
+    .pcs-m { text-align:center; flex:1; }
+    .pcs-m .v { font-family:var(--font-d); font-size:0.9rem; color:var(--gold); }
+    .pcs-m .l { font-size:0.5rem; color:var(--gray-3); text-transform:uppercase; }
+
+    /* ── CLUB SECTION ── */
+    .club-section { background:var(--black-mid); padding:1.5rem 0; border-top:1px solid var(--dark); }
+    .club-eyebrow { font-size:0.6rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.5rem; }
+    .club-title { font-family:var(--font-d); font-size:2rem; line-height:0.9; color:var(--white); letter-spacing:0.05em; margin-bottom:1rem; }
+    .club-title em { color:var(--gold); font-style:normal; }
+    .club-p { font-size:0.78rem; color:var(--gray-4); line-height:1.7; margin-bottom:0.6rem; }
+    .club-stats-m { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--dark); margin:1rem 0; }
+    .club-stat-m { background:var(--black); padding:0.75rem 0; text-align:center; }
+    .club-stat-m .val { font-family:var(--font-d); font-size:1.5rem; color:var(--gold); line-height:1; }
+    .club-stat-m .lbl { font-size:0.55rem; color:var(--gray-3); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; }
+    .club-pillars-m { display:flex; flex-direction:column; gap:0.75rem; }
+    .club-pillar-m { display:flex; gap:0.75rem; padding:0.75rem; background:var(--black); border-left:2px solid var(--gold); }
+    .pillar-icon-m { font-size:1.2rem; flex-shrink:0; width:30px; text-align:center; }
+    .club-pillar-m h3 { font-size:0.78rem; font-weight:700; color:var(--white); margin-bottom:0.2rem; }
+    .club-pillar-m p { font-size:0.68rem; color:var(--gray-3); line-height:1.5; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section { background:var(--gold); padding:1.25rem 1rem; }
+    .newsletter-section h3 { font-family:var(--font-d); font-size:1.1rem; color:#000; letter-spacing:0.08em; margin-bottom:0.3rem; }
+    .newsletter-section p { font-size:0.72rem; color:#333; margin-bottom:0.75rem; }
+    .newsletter-form { display:flex; gap:0; }
+    .newsletter-input { flex:1; padding:0.6rem 0.75rem; background:rgba(0,0,0,0.1); border:1px solid rgba(0,0,0,0.2); font:inherit; font-size:0.75rem; color:#000; outline:none; }
+    .newsletter-input::placeholder { color:#555; }
+    .newsletter-btn { padding:0.6rem 1rem; background:#000; color:var(--gold); font-size:0.72rem; font-weight:700; letter-spacing:0.04em; border:none; cursor:pointer; white-space:nowrap; }
+
+    /* ── PARTNERS ── */
+    .partners-section { background:var(--black); padding:1.5rem 0; border-top:1px solid var(--dark); }
+    .partners-grid-m { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--dark); margin:0 1rem; }
+    .partner-card-m { background:var(--black-mid); height:70px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:var(--gray-2); overflow:hidden; padding:0.4rem; }
+    .partner-logo-m { max-width:100%; max-height:60px; object-fit:contain; filter:grayscale(30%); }
+
+    /* ── FOOTER ── */
+    .footer { background:var(--black); border-top:3px solid var(--gold); padding:1.5rem 1rem 1rem; }
+    .footer-logo-m { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem; }
+    .footer-logo-m img { width:40px; height:40px; object-fit:contain; }
+    .footer-logo-name { font-family:var(--font-d); font-size:1rem; color:var(--gold); letter-spacing:0.15em; }
+    .footer-logo-sub { font-size:0.6rem; color:var(--gray-3); }
+    .footer-brand-p { font-size:0.72rem; color:var(--gray-3); line-height:1.6; margin-bottom:1rem; }
+    .footer-socials-m { display:flex; gap:0.4rem; margin-bottom:1.25rem; }
+    .footer-social-m { width:34px; height:34px; background:var(--dark); border:1px solid var(--gray-1); display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:var(--gray-4); transition:all var(--tr); }
+    .footer-social-m:hover { background:var(--gold); color:#000; }
+    .footer-cols { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1rem; }
+    .footer-col h4 { font-family:var(--font-d); font-size:0.78rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.6rem; }
+    .footer-col ul { display:flex; flex-direction:column; gap:0.4rem; }
+    .footer-col a { font-size:0.7rem; color:var(--gray-3); }
+    .footer-bottom-m { padding-top:1rem; border-top:1px solid var(--dark); font-size:0.6rem; color:var(--gray-2); display:flex; flex-direction:column; gap:0.4rem; }
+    .footer-bottom-m a { color:var(--gray-2); }
+    .footer-links-m { display:flex; gap:1rem; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <div data-i18n-html="announce">🔔 Détection 2026 — <a href="#club">Inscriptions ouvertes</a></div>
+  <div class="announce-socials">
+    <a href="https://www.instagram.com/unionsportivedeladiaspora/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/unionsportivedeladiaspora" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://x.com/fcusdi" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.flickr.com/photos/202598756@N03/albums/" target="_blank"><i class="fa-brands fa-flickr"></i></a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="../FC USDI Desktop.html">
+    <img src="../img/logo.png" alt="USDI FC" />
+    <span class="nav-logo-text">USDI FC</span>
+  </a>
+  <div class="nav-spacer"></div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+    <span class="lang-sep"></span>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+  </div>
+  <div class="hamburger" onclick="document.getElementById('drawer').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- NAV DRAWER -->
+<div class="nav-drawer" id="drawer">
+  <div class="nav-drawer-close" onclick="document.getElementById('drawer').classList.remove('open')">✕</div>
+  <ul>
+    <li><a href="../FC USDI Desktop.html" data-i18n="nav.home" onclick="document.getElementById('drawer').classList.remove('open')">Accueil</a></li>
+    <li><a href="#news" data-i18n="nav.news" onclick="document.getElementById('drawer').classList.remove('open')">Actualités</a></li>
+    <li><a href="../teams.html" data-i18n="nav.team" onclick="document.getElementById('drawer').classList.remove('open')">Équipe</a></li>
+    <li><a href="../players.html" data-i18n="nav.players" onclick="document.getElementById('drawer').classList.remove('open')">Joueurs</a></li>
+    <li><a href="#fixtures" data-i18n="nav.results" onclick="document.getElementById('drawer').classList.remove('open')">Résultats</a></li>
+    <li><a href="#club" data-i18n="nav.club" onclick="document.getElementById('drawer').classList.remove('open')">Club</a></li>
+  </ul>
+  <a href="https://wa.me/+436607118373" target="_blank" class="btn-join" data-i18n="nav.join">Rejoindre</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="lion-bg">
+    <div class="lion-ghost lion-ghost-1"></div>
+    <div class="lion-ghost lion-ghost-2"></div>
+  </div>
+  <div class="hero-badge">
+    <div class="hero-badge-ring">
+      <img src="../img/logo.png" alt="USDI FC" />
+    </div>
+    <div class="hero-badge-label">UNION SPORTIVE<br />DE LA DIASPORA</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-season" data-i18n="hero.season">⚽ Saison 2025 / 2026</div>
+    <h1 class="hero-title" data-i18n-html="hero.title">ENSEMBLE<br /><em>ON VA</em><br />PLUS LOIN</h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">Club de Football · Centre de Formation · Détection de Talents</p>
+    <div class="hero-ctas">
+      <a href="https://youtu.be/dxUdnCNXiu0?si=s-A_6BBn8gPugwDK" target="_blank" class="btn-primary" data-i18n="hero.cta1">▶ Voir les temps forts</a>
+      <a href="#fixtures" class="btn-ghost" data-i18n="hero.cta2">Prochains matchs</a>
+    </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.last">Dernier résultat</div>
+      <div class="score-value">USDI FC <span class="hl">3–1</span> AS Tanda</div>
+      <div class="score-sub">Ligue 1 · 10 Mai 2026</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.next">Prochain match</div>
+      <div class="score-value">USDI FC vs Racing Club</div>
+      <div class="score-sub">17 Mai · 15h00</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.champ">Championnat</div>
+      <div class="score-value">1er · <span class="hl">26 pts</span></div>
+      <div class="score-sub" data-i18n="hero.champ.sub">Ligue 1 Côte d'Ivoire</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOLD LINE -->
+<div class="gold-line"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-label">⚡ Live</span>
+  <div class="ticker-track">
+    <span><strong>USDI FC 3–1 AS Tanda</strong> · Ligue 1 J.18</span>
+    <span><strong>Kouassi Méité</strong> — 18 buts cette saison</span>
+    <span><strong>Détection 2026</strong> — Inscriptions ouvertes jusqu'au 31 Mai</span>
+    <span><strong>Nouveau maillot</strong> 2026 noir &amp; or dévoilé</span>
+    <span><strong>USDI FC 3–1 AS Tanda</strong> · Ligue 1 J.18</span>
+    <span><strong>Kouassi Méité</strong> — 18 buts cette saison</span>
+    <span><strong>Détection 2026</strong> — Inscriptions ouvertes jusqu'au 31 Mai</span>
+    <span><strong>Nouveau maillot</strong> 2026 noir &amp; or dévoilé</span>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n="news.heading">Actualités</h2>
+      <a href="#" data-i18n="news.viewall">Tout voir →</a>
+    </div>
+  </div>
+  <div class="cat-tabs" style="padding:0 1rem">
+    <span class="cat-tab active" data-i18n="tab.all">Tout</span>
+    <span class="cat-tab" data-i18n="tab.match">Match</span>
+    <span class="cat-tab" data-i18n="tab.club">Club</span>
+    <span class="cat-tab" data-i18n="tab.academy">Formation</span>
+    <span class="cat-tab" data-i18n="tab.gallery">Galerie</span>
+  </div>
+  <div class="news-featured" onclick="location.href='#'">
+    <div class="news-featured-img" style="background:url('../img/match-featured.jpg') center/cover no-repeat;font-size:0"></div>
+    <div class="news-featured-overlay"></div>
+    <div class="news-featured-body">
+      <span class="news-tag" data-i18n="tab.match">Match</span>
+      <div class="news-featured-title" data-i18n="news.featured.title">USDI FC 3 – 1 AS Tanda : Une victoire de caractère</div>
+      <div class="news-meta" data-i18n="news.featured.meta">10 Mai 2026 · 5 min de lecture</div>
+    </div>
+  </div>
+  <div class="news-grid-mobile" id="news-grid"></div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item-m"><div class="stat-num-m">21</div><div class="stat-lbl-m" data-i18n="stat.matches">Matchs joués</div></div>
+  <div class="stat-item-m"><div class="stat-num-m">14</div><div class="stat-lbl-m" data-i18n="stat.wins">Victoires</div></div>
+  <div class="stat-item-m"><div class="stat-num-m">38</div><div class="stat-lbl-m" data-i18n="stat.goals">Buts marqués</div></div>
+  <div class="stat-item-m"><div class="stat-num-m">240+</div><div class="stat-lbl-m" data-i18n="stat.members">Membres</div></div>
+  <div class="stat-item-m"><div class="stat-num-m">3</div><div class="stat-lbl-m" data-i18n="stat.trophies">Trophées</div></div>
+</div>
+
+<!-- FIXTURES -->
+<section class="fixtures-section" id="fixtures">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n-html="fixtures.heading">Résultats & <span>Matchs</span></h2>
+      <a href="../teams.html" data-i18n="fixtures.all">Tous →</a>
+    </div>
+  </div>
+  <div class="fixtures-scroll" id="fixtures-strip"></div>
+</section>
+
+<!-- SPOTLIGHT -->
+<div class="spotlight-section">
+  <div class="spotlight-bg"></div>
+  <div class="spotlight-fade"></div>
+  <div class="spotlight-content">
+    <div class="spotlight-eye" data-i18n="spotlight.eye">Joueur du mois</div>
+    <div class="spotlight-name">KOUASSI<br /><span>MÉITÉ</span></div>
+    <div class="spotlight-detail" data-i18n="spotlight.detail">Attaquant · #9 · 18 buts</div>
+  </div>
+</div>
+
+<!-- PLAYERS -->
+<section class="players-section" id="players">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n-html="players.heading">Joueurs <span>Spotlight</span></h2>
+      <a href="../players.html" data-i18n="players.all">Voir tout →</a>
+    </div>
+  </div>
+  <div class="players-scroll-m" id="players-scroll"></div>
+</section>
+
+<!-- CLUB -->
+<section class="club-section" id="club">
+  <div class="section-wrap">
+    <div class="club-eyebrow" data-i18n="club.eyebrow">Qui sommes-nous</div>
+    <div class="club-title" data-i18n-html="club.title">Un club fondé sur<br /><em>l'Opportunité</em></div>
+    <p class="club-p" data-i18n="club.p1">Fondé en Côte d'Ivoire, l'USDI FC a été créé pour offrir aux jeunes footballeurs talentueux une véritable chance.</p>
+    <p class="club-p" data-i18n="club.p2">Nous croyons que le talent est partout. Notre mission est de le découvrir, de le développer, et de le porter sur la scène mondiale.</p>
+    <div class="club-stats-m">
+      <div class="club-stat-m"><div class="val">3</div><div class="lbl" data-i18n="club.stat.teams">Équipes</div></div>
+      <div class="club-stat-m"><div class="val">30+</div><div class="lbl" data-i18n="club.stat.players">Joueurs</div></div>
+      <div class="club-stat-m"><div class="val">2022</div><div class="lbl" data-i18n="club.stat.founded">Fondé</div></div>
+      <div class="club-stat-m"><div class="val">🇨🇮</div><div class="lbl">Côte d'Ivoire</div></div>
+    </div>
+    <div class="club-pillars-m">
+      <div class="club-pillar-m"><div class="pillar-icon-m">🎯</div><div><h3 data-i18n="club.p1.title">Détection de Talents</h3><p data-i18n="club.p1.text">Identification des talents bruts dans toutes les régions.</p></div></div>
+      <div class="club-pillar-m"><div class="pillar-icon-m">📚</div><div><h3 data-i18n="club.p2.title">Formation Professionnelle</h3><p data-i18n="club.p2.text">Programmes d'entraînement par des entraîneurs certifiés UEFA.</p></div></div>
+      <div class="club-pillar-m"><div class="pillar-icon-m">🌍</div><div><h3 data-i18n="club.p3.title">Passerelles de Carrière</h3><p data-i18n="club.p3.text">Liens entre talents ivoiriens et clubs à travers l'Afrique et l'Europe.</p></div></div>
+      <div class="club-pillar-m"><div class="pillar-icon-m">🤝</div><div><h3 data-i18n="club.p4.title">Communauté &amp; Diaspora</h3><p data-i18n="club.p4.text">Unir la diaspora autour d'une passion partagée.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section" id="contact">
+  <h3 data-i18n="newsletter.title">RESTEZ CONNECTÉ · NEWSLETTER USDI FC</h3>
+  <p data-i18n="newsletter.sub">Recevez les actualités, résultats et événements du club.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="votre@email.com" data-i18n-ph="newsletter.input" />
+    <button class="newsletter-btn" data-i18n="newsletter.btn">S'inscrire →</button>
+  </div>
+</div>
+
+<!-- PARTNERS -->
+<section class="partners-section">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n-html="partners.heading">Nos <span>Partenaires</span></h2>
+    </div>
+  </div>
+  <div class="partners-grid-m">
+    <div class="partner-card-m"><img src="../img/partner-agrochic.jpg" alt="Agro'Chic" class="partner-logo-m" /></div>
+    <div class="partner-card-m" style="font-size:0.65rem;color:var(--gray-2)">Partenaire 2</div>
+    <div class="partner-card-m" style="font-size:0.65rem;color:var(--gray-2)">Partenaire 3</div>
+    <div class="partner-card-m" style="font-size:0.65rem;color:var(--gray-2)">Partenaire 4</div>
+    <div class="partner-card-m" style="font-size:0.65rem;color:var(--gray-2)">Partenaire 5</div>
+    <div class="partner-card-m" style="font-size:0.65rem;color:var(--gray-2)">Partenaire 6</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo-m">
+    <img src="../img/logo.png" alt="USDI FC" />
+    <div>
+      <div class="footer-logo-name">USDI FC</div>
+      <div class="footer-logo-sub">Union Sportive de la Diaspora</div>
+    </div>
+  </div>
+  <p class="footer-brand-p" data-i18n="footer.brand">Club de football et centre de formation — construisons les champions de demain.</p>
+  <div class="footer-socials-m">
+    <a href="https://www.instagram.com/unionsportivedeladiaspora/" target="_blank" class="footer-social-m"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/unionsportivedeladiaspora" target="_blank" class="footer-social-m"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://x.com/fcusdi" target="_blank" class="footer-social-m"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" class="footer-social-m"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.flickr.com/photos/202598756@N03/albums/" target="_blank" class="footer-social-m"><i class="fa-brands fa-flickr"></i></a>
+  </div>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4 data-i18n="footer.col1">Club</h4>
+      <ul>
+        <li><a href="#club" data-i18n="footer.about">À propos</a></li>
+        <li><a href="../teams.html" data-i18n="footer.teams">Nos équipes</a></li>
+        <li><a href="../players.html" data-i18n="footer.players">Joueurs</a></li>
+        <li><a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" data-i18n="footer.gallery">Galerie vidéo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col3">Contact</h4>
+      <ul>
+        <li><a href="mailto:contact@fcusdi.com">contact@fcusdi.com</a></li>
+        <li><a href="https://wa.me/+436607118373" target="_blank" data-i18n="footer.trials">Info détection</a></li>
+        <li><a href="#" data-i18n="footer.sponsor">Sponsoring</a></li>
+        <li><a href="#" data-i18n="footer.media">Relations presse</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-m">
+    <span data-i18n="footer.copy">© 2026 USDI FC — Union Sportive de la Diaspora. Tous droits réservés.</span>
+    <div class="footer-links-m">
+      <a href="#" data-i18n="footer.legal">Mentions légales</a>
+      <a href="#" data-i18n="footer.privacy">Politique de confidentialité</a>
+      <a href="https://linktr.ee/fcusdi" target="_blank">Linktree</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/i18n.js"></script>
+<script>
+  // News cards
+  const ng = document.getElementById('news-grid');
+  ng.innerHTML = NEWS.map(n => `
+    <div class="news-card-sm" onclick="${n.link ? `window.open('${n.link}','_blank')` : `location.href='#'`}">
+      <div class="news-card-sm-img" style="${n.photo ? `background:url('../${n.photo}') center/cover no-repeat;font-size:0` : ''}">
+        ${n.photo ? '' : n.emoji}
+      </div>
+      <div class="news-card-sm-body">
+        <span class="news-tag">${n.tag}</span>
+        <div class="news-card-sm-title">${n.title}</div>
+        <div class="news-meta" style="font-size:.58rem;color:var(--gray-3)">${n.date}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Fixtures
+  const fs = document.getElementById('fixtures-strip');
+  fs.innerHTML = FIXTURES.map(f => `
+    <div class="fixture-card result-${f.result}">
+      <div class="fixture-comp">${f.competition}</div>
+      <div class="fixture-teams-m">${f.home} v ${f.away}</div>
+      <div class="fixture-score-m">${f.score}</div>
+      <div class="fixture-date-m">${f.date}</div>
+    </div>
+  `).join('');
+
+  // Players
+  const ps = document.getElementById('players-scroll');
+  ps.innerHTML = PLAYERS.map(p => `
+    <div class="player-card-m" onclick="location.href='../player.html?id=${p.id}'">
+      <div class="player-card-img-m" style="${p.photo ? `background:url('../${p.photo}') center/cover no-repeat;font-size:0` : ''}">
+        ${p.photo ? '' : p.emoji}
+        <span class="player-card-num-m">#${p.number}</span>
+      </div>
+      <div class="player-card-body-m">
+        <span class="player-pos-m pos-${p.position}">${p.position}</span>
+        <h3>${p.name}</h3>
+        <div class="player-team-m">${p.team}</div>
+        <div class="player-stats-m">
+          <div class="pcs-m"><div class="v">${p.stats.goals}</div><div class="l">Buts</div></div>
+          <div class="pcs-m"><div class="v">${p.stats.assists}</div><div class="l">Passes</div></div>
+          <div class="pcs-m"><div class="v">${p.stats.rating}</div><div class="l">Note</div></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Category tabs
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
