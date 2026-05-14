@@ -1,0 +1,33 @@
+const TEAMS = [
+  { id:1, name:"FC USDI Seniors", category:"senior", color:"#f97316", emoji:"🦁", league:"Ligue 1 Côte d'Ivoire", founded:2022, playerCount:22, wins:14, draws:4, losses:3, coach:"Kouakou Jean-Paul", photo:"img/team-seniors.jpg" },
+  { id:2, name:"USDI Espoirs (U20)", category:"youth", color:"#22c55e", emoji:"🌱", league:"Division Nationale U20", founded:2014, playerCount:20, wins:11, draws:5, losses:4, coach:"N'Guessan Brice", photo:"img/team-u20.jpg" },
+  { id:3, name:"USDI U17", category:"youth", color:"#3b82f6", emoji:"⭐", league:"Championnat U17", founded:2016, playerCount:20, wins:9, draws:3, losses:5, coach:"Diabaté Seydou", photo:"img/team-u17.jpg" },
+];
+
+const PLAYERS = [
+  { id:1, name:"Kouassi Méité", number:9, position:"FWD", positionFull:"Centre Forward", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:22, height:"1.82m", foot:"Right", dob:"15 March 2002", emoji:"⚽", photo:"img/player-meite.jpg", bio:"A clinical finisher and top scorer for USDI Seniors. Known for explosive pace, intelligent movement, and ice-cold composure in front of goal. Regarded as one of the most exciting young forwards in Côte d'Ivoire.", stats:{ appearances:21, goals:18, assists:5, rating:8.1, keyPasses:22 } },
+  { id:2, name:"Yao Konan", number:1, position:"GK", positionFull:"Goalkeeper", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:24, height:"1.91m", foot:"Right", dob:"03 July 2000", emoji:"🧤", bio:"A commanding presence between the posts, Yao has been the backbone of USDI's solid defensive record this season. His reflexes, shot-stopping, and distribution make him a complete modern goalkeeper.", stats:{ appearances:21, goals:0, assists:1, rating:7.8, cleanSheets:11, saves:64 } },
+  { id:3, name:"Dramane Bamba", number:5, position:"DEF", positionFull:"Centre Back", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:23, height:"1.88m", foot:"Left", dob:"21 September 2001", emoji:"🛡️", bio:"A composed and dominant centre-back who leads the backline with authority. Dramane's reading of the game, aerial ability, and calm on the ball make him a crucial pillar of USDI's defensive structure.", stats:{ appearances:20, goals:2, assists:1, rating:7.6, tackles:78 } },
+  { id:4, name:"Arouna Diallo", number:8, position:"MID", positionFull:"Central Midfielder", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:21, height:"1.76m", foot:"Right", dob:"08 January 2003", emoji:"🎯", bio:"The engine of the USDI midfield. Arouna combines technical excellence with relentless work rate and exceptional vision. His passing range and ability to dictate the tempo of a match are beyond his years.", stats:{ appearances:19, goals:4, assists:9, rating:7.9, keyPasses:47 } },
+  { id:5, name:"Issiaka Coulibaly", number:11, position:"FWD", positionFull:"Left Winger", team:"USDI Espoirs (U20)", nationality:"🇨🇮 Ivorian", age:19, height:"1.74m", foot:"Left", dob:"14 April 2005", emoji:"⚡", bio:"A dazzling winger with electrifying pace and slick dribbling. Issiaka terrorizes fullbacks with his direct running and has an impressive eye for goal from wide positions. One of the hottest prospects in the academy.", stats:{ appearances:18, goals:10, assists:7, rating:7.7, keyPasses:31 } },
+  { id:6, name:"Oumar Fofana", number:4, position:"DEF", positionFull:"Right Back", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:22, height:"1.79m", foot:"Right", dob:"27 June 2002", emoji:"🏃", bio:"An energetic modern full-back who excels at both ends of the pitch. Oumar's overlapping runs, crossing ability, and defensive solidity add a vital dimension to USDI's game.", stats:{ appearances:20, goals:1, assists:6, rating:7.4, tackles:61 } },
+  { id:7, name:"Sekou Traoré", number:10, position:"MID", positionFull:"Attacking Midfielder", team:"USDI Espoirs (U20)", nationality:"🇨🇮 Ivorian", age:20, height:"1.72m", foot:"Right", dob:"11 November 2004", emoji:"🌟", bio:"The most technically gifted player in the USDI pipeline. Sekou is blessed with exceptional close control, creative vision, and the ability to unlock any defence with a single pass. Tipped for great things.", stats:{ appearances:17, goals:7, assists:11, rating:8.0, keyPasses:53 } },
+  { id:8, name:"Adama Koné", number:6, position:"MID", positionFull:"Defensive Midfielder", team:"FC USDI Seniors", nationality:"🇨🇮 Ivorian", age:24, height:"1.83m", foot:"Right", dob:"02 May 2000", emoji:"⚙️", bio:"A disciplined and tenacious defensive midfielder who shields the back four with exceptional consistency. Adama's capacity to win the ball, absorb pressure, and recycle possession is vital to the team's shape.", stats:{ appearances:21, goals:1, assists:3, rating:7.5, tackles:91 } },
+];
+
+const NEWS = [
+  { tag:"Transfer", title:"Espoirs Sign Promising U21 Winger from Bouaké", date:"08 May 2025", emoji:"📝", color1:"#1a2a0a", color2:"#0a1628", photo:"img/transfer.jpg" },
+  { tag:"Interview", title:"Coach Kouakou: 'This squad can achieve something special'", date:"06 May 2025", emoji:"🎙️", color1:"#1a0a00", color2:"#2d1507", photo:"img/interview.jpg" },
+  { tag:"Academy", title:"USDI U15 Crowned Regional Academy Champions", date:"04 May 2025", emoji:"🏅", color1:"#1a0a2a", color2:"#0a1628", photo:"img/academy.jpg" },
+  { tag:"Club News", title:"FC USDI Announce New Partnership with Regional Sports Authority", date:"01 May 2025", emoji:"🤝", color1:"#0a2a1a", color2:"#1a0a00", photo:"img/club-news.jpg", link:"https://abidjanpress.com/pre-saison-lusdi-na-pas-tremble-devant-lasec/" },
+];
+
+const FIXTURES = [
+  { competition:"Ligue 1", home:"FC USDI", away:"AS Tanda", score:"3 – 1", date:"10 May 2025", result:"win" },
+  { competition:"Ligue 1", home:"Séwé SC", away:"FC USDI", score:"0 – 0", date:"03 May 2025", result:"draw" },
+  { competition:"Coupe de CIV", home:"FC USDI", away:"Afad Djékanou", score:"2 – 0", date:"26 Apr 2025", result:"win" },
+  { competition:"Ligue 1", home:"FC USDI", away:"Africa SC", score:"1 – 2", date:"19 Apr 2025", result:"loss" },
+  { competition:"Ligue 1", home:"ASEC Mimosas", away:"FC USDI", score:"1 – 3", date:"12 Apr 2025", result:"win" },
+  { competition:"Ligue 1", home:"FC USDI", away:"Sol FC", score:"2 – 1", date:"05 Apr 2025", result:"win" },
+  { competition:"Ligue 1", home:"FC USDI", away:"Racing Club Ab.", score:"TBD", date:"17 May 2025", result:"" },
+];
