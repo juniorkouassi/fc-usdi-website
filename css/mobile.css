@@ -284,7 +284,7 @@ ul { list-style: none; }
 }
 .lion-w {
   position: absolute;
-  background: url('../../img/lion-bg.png') no-repeat center / contain;
+  background: url('../img/lion-bg.png') no-repeat center / contain;
   filter: grayscale(1) brightness(0.5);
 }
 .lion-w1 { width: 360px; height: 360px; right: -40px; top: 30px; opacity: 0.08; animation: lion-float1 10s ease-in-out infinite; }
