@@ -37,16 +37,17 @@
 
     /* ── ANNOUNCE BAR ── */
     .announce-bar {
-      background:var(--gold); padding:0 1rem; height:32px;
+      background:var(--gold); padding:0 0.75rem; height:32px;
       display:flex; align-items:center; justify-content:space-between;
       font-size:0.65rem; font-weight:700; color:#000;
     }
     .announce-bar a { color:#000; }
-    .announce-socials { display:flex; gap:0.4rem; }
+    .announce-bar > div:first-child { display:none; }
+    .announce-socials { display:flex; gap:0.4rem; margin-left:auto; }
     .announce-socials a {
-      width:22px; height:22px; background:rgba(0,0,0,0.15);
+      width:24px; height:24px; background:rgba(0,0,0,0.15);
       border-radius:3px; display:flex; align-items:center; justify-content:center;
-      font-size:0.72rem; color:#000;
+      font-size:0.78rem; color:#000;
     }
 
     /* ── NAVBAR ── */
@@ -324,7 +325,7 @@
     .footer-logo-name { font-family:var(--font-d); font-size:1rem; color:var(--gold); letter-spacing:0.15em; }
     .footer-logo-sub { font-size:0.6rem; color:var(--gray-3); }
     .footer-brand-p { font-size:0.72rem; color:var(--gray-3); line-height:1.6; margin-bottom:1rem; }
-    .footer-socials-m { display:flex; gap:0.4rem; margin-bottom:1.25rem; }
+    .footer-socials-m { display:flex; gap:0.4rem; margin-bottom:1.25rem; flex-wrap:wrap; }
     .footer-social-m { width:34px; height:34px; background:var(--dark); border:1px solid var(--gray-1); display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:var(--gray-4); transition:all var(--tr); }
     .footer-social-m:hover { background:var(--gold); color:#000; }
     .footer-cols { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1rem; }
