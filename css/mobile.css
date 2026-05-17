@@ -1219,17 +1219,15 @@ ul { list-style: none; }
 /* ── BOTTOM NAV ── */
 .bottom-nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   z-index: 300;
   height: calc(var(--bottom-nav-h) + var(--safe-bottom));
   padding-bottom: var(--safe-bottom);
   background: var(--black-mid);
-  border-top: 1px solid var(--dark);
+  border-top: 2px solid rgba(255,215,0,0.25);
   display: flex;
   align-items: stretch;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.7);
+  box-shadow: 0 -6px 28px rgba(0,0,0,0.85);
 }
 .bottom-nav-item {
   flex: 1;
@@ -1237,22 +1235,47 @@ ul { list-style: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
-  color: var(--gray-3);
-  font-size: 0.56rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  gap: 0.18rem;
+  color: var(--gray-2);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color var(--transition);
+  transition: color var(--transition), background var(--transition);
   padding-top: 0.15rem;
+  position: relative;
   -webkit-tap-highlight-color: transparent;
 }
+/* Gold top bar on active item */
+.bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 0 0 2px 2px;
+}
 .bottom-nav-item.active { color: var(--gold); }
-.bottom-nav-item .bn-icon { font-size: 1.15rem; }
+.bottom-nav-item:hover:not(.join-btn) { color: var(--white); }
+
+/* FA icon styling */
+.bottom-nav-item .bn-icon {
+  font-size: 1.2rem;
+  transition: transform var(--transition);
+}
+.bottom-nav-item.active .bn-icon { transform: translateY(-1px); }
+
+/* Join / Rejoindre button */
 .bottom-nav-item.join-btn {
   background: var(--gold);
   color: #000;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
-.bottom-nav-item.join-btn .bn-icon { font-size: 1.1rem; }
+.bottom-nav-item.join-btn::before { display: none; }
+.bottom-nav-item.join-btn .bn-icon {
+  font-size: 1.1rem;
+  color: #000;
+}
+.bottom-nav-item.join-btn:hover { background: #fff; }
