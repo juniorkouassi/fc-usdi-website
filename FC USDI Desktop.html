@@ -245,27 +245,6 @@
   </div>
 </section>
 
-<!-- PLAYER SPOTLIGHT -->
-<div class="spotlight-section">
-  <div class="spotlight-bg"></div>
-  <div class="spotlight-fade"></div>
-  <div class="spotlight-content">
-    <div class="spotlight-eye" data-i18n="spotlight.eye">Joueur du mois</div>
-    <div class="spotlight-name">KOUASSI<br /><span>MÉITÉ</span></div>
-    <div class="spotlight-detail" data-i18n="spotlight.detail">Attaquant · #9 · 18 buts cette saison</div>
-  </div>
-</div>
-
-<!-- PLAYERS -->
-<section class="players-section" id="players">
-  <div class="section-wrap">
-    <div class="section-heading">
-      <h2 data-i18n-html="players.heading">Joueurs <span>Spotlight</span></h2>
-      <a href="players.html" data-i18n="players.all">Voir l'effectif complet →</a>
-    </div>
-    <div class="players-scroll" id="players-scroll"></div>
-  </div>
-</section>
 
 <!-- CLUB SECTION -->
 <section class="club-section" id="club">
@@ -445,9 +424,6 @@
     </div>
   `).join('');
 
-  // Players
-  const ps = document.getElementById('players-scroll');
-  ps.innerHTML = PLAYERS.map(p => playerCardHTML(p)).join('');
 
   // Category tabs
   document.querySelectorAll('.cat-tab').forEach(tab => {

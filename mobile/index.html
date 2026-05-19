@@ -489,27 +489,6 @@
   <div class="fixtures-scroll" id="fixtures-strip"></div>
 </section>
 
-<!-- SPOTLIGHT -->
-<div class="spotlight-section">
-  <div class="spotlight-bg"></div>
-  <div class="spotlight-fade"></div>
-  <div class="spotlight-content">
-    <div class="spotlight-eye" data-i18n="spotlight.eye">Joueur du mois</div>
-    <div class="spotlight-name">KOUASSI<br /><span>MÉITÉ</span></div>
-    <div class="spotlight-detail" data-i18n="spotlight.detail">Attaquant · #9 · 18 buts</div>
-  </div>
-</div>
-
-<!-- PLAYERS -->
-<section class="players-section" id="players">
-  <div class="section-wrap">
-    <div class="section-heading">
-      <h2 data-i18n-html="players.heading">Joueurs <span>Spotlight</span></h2>
-      <a href="../players.html" data-i18n="players.all">Voir tout →</a>
-    </div>
-  </div>
-  <div class="players-scroll-m" id="players-scroll"></div>
-</section>
 
 <!-- CLUB -->
 <section class="club-section" id="club">
@@ -637,26 +616,6 @@
     </div>
   `).join('');
 
-  // Players
-  const ps = document.getElementById('players-scroll');
-  ps.innerHTML = PLAYERS.map(p => `
-    <div class="player-card-m" onclick="location.href='../player.html?id=${p.id}'">
-      <div class="player-card-img-m" style="${p.photo ? `background:url('../${p.photo}') center/cover no-repeat;font-size:0` : ''}">
-        ${p.photo ? '' : p.emoji}
-        <span class="player-card-num-m">#${p.number}</span>
-      </div>
-      <div class="player-card-body-m">
-        <span class="player-pos-m pos-${p.position}">${p.position}</span>
-        <h3>${p.name}</h3>
-        <div class="player-team-m">${p.team}</div>
-        <div class="player-stats-m">
-          <div class="pcs-m"><div class="v">${p.stats.goals}</div><div class="l">Buts</div></div>
-          <div class="pcs-m"><div class="v">${p.stats.assists}</div><div class="l">Passes</div></div>
-          <div class="pcs-m"><div class="v">${p.stats.rating}</div><div class="l">Note</div></div>
-        </div>
-      </div>
-    </div>
-  `).join('');
 
   // Category tabs
   document.querySelectorAll('.cat-tab').forEach(tab => {
