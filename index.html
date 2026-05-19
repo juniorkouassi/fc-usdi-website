@@ -1,9 +1,550 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=FC%20USDI%20Desktop.html" />
-  <script>window.location.replace("FC USDI Desktop.html");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#080808" />
+  <title>USDI FC — Union Sportive de la Diaspora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" crossorigin="anonymous" />
 </head>
-<body></body>
+<body>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<aside class="drawer" id="drawer">
+  <div class="drawer-header">
+    <a class="drawer-logo" href="index.html" onclick="closeDrawer()">
+      <img src="img/logo.png" alt="USDI FC" />
+      <span class="drawer-logo-text">USDI FC</span>
+    </a>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Fermer">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="index.html" class="active" onclick="closeDrawer()">
+      <i class="fa-solid fa-house"></i> <span data-i18n="nav.home">Accueil</span>
+    </a>
+    <a href="#news" onclick="closeDrawer()">
+      <i class="fa-solid fa-newspaper"></i> <span data-i18n="nav.news">Actualités</span>
+    </a>
+    <a href="#fixtures" onclick="closeDrawer()">
+      <i class="fa-solid fa-futbol"></i> <span data-i18n="nav.results">Résultats</span>
+    </a>
+    <a href="#players" onclick="closeDrawer()">
+      <i class="fa-solid fa-person-running"></i> <span data-i18n="nav.players">Joueurs</span>
+    </a>
+    <a href="#club" onclick="closeDrawer()">
+      <i class="fa-solid fa-star"></i> <span data-i18n="nav.club">Club</span>
+    </a>
+    <a href="#contact" onclick="closeDrawer()">
+      <i class="fa-solid fa-envelope"></i> <span data-i18n="nav.contact">Contact</span>
+    </a>
+  </nav>
+  <div class="drawer-footer">
+    <div class="drawer-lang">
+      <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">
+        FR <span class="fi fi-fr"></span>
+      </button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">
+        EN <span class="fi fi-gb"></span>
+      </button>
+    </div>
+    <a href="#club" class="btn-drawer-join" onclick="closeDrawer()" data-i18n="nav.join">Rejoindre le club</a>
+  </div>
+</aside>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  <span data-i18n-html="announce">🔔 Détection de talents 2026 — <a href="#club">Inscriptions ouvertes</a></span>
+</div>
+
+<!-- TOP NAV -->
+<nav class="navbar">
+  <a class="nav-logo" href="index.html">
+    <img src="img/logo.png" alt="USDI FC" class="nav-logo-img" />
+    <span class="nav-logo-text">USDI FC</span>
+  </a>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="lion-watermark" aria-hidden="true">
+    <div class="lion-w lion-w1"></div>
+    <div class="lion-w lion-w2"></div>
+  </div>
+
+  <!-- Logo badge -->
+  <div class="hero-badge-wrap">
+    <div class="hero-badge-ring">
+      <img src="img/logo.png" alt="USDI FC" class="hero-badge-logo" />
+    </div>
+    <div class="hero-badge-label" data-i18n-html="hero.badge">UNION SPORTIVE<br />DE LA DIASPORA</div>
+  </div>
+
+  <!-- Hero text -->
+  <div class="hero-content">
+    <div class="hero-season" data-i18n="hero.season">⚽ Saison 2025 / 2026</div>
+    <h1 class="hero-title" data-i18n-html="hero.title">
+      ENSEMBLE<br /><em>ON VA</em><br />PLUS LOIN
+    </h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">Club de Football · Centre de Formation · Détection de Talents</p>
+    <div class="hero-ctas">
+      <a href="https://youtu.be/dxUdnCNXiu0?si=s-A_6BBn8gPugwDK" target="_blank" rel="noopener" class="btn-hero-primary" data-i18n="hero.cta1">▶ Voir les temps forts</a>
+      <a href="#fixtures" class="btn-hero-ghost" data-i18n="hero.cta2">Prochains matchs</a>
+    </div>
+  </div>
+
+  <!-- Score scroll bar -->
+  <div class="hero-score-bar">
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.last">Dernier résultat</div>
+      <div class="score-value">USDI FC <span class="highlight">3 – 1</span> AS Tanda</div>
+      <div class="score-sub">Ligue 1 · 10 Mai 2026</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.next">Prochain match</div>
+      <div class="score-value">USDI FC vs Racing Club</div>
+      <div class="score-sub">17 Mai · 15h00</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label" data-i18n="hero.champ">Championnat</div>
+      <div class="score-value">1<sup style="font-size:.7em">er</sup> · <span class="highlight">26 pts</span></div>
+      <div class="score-sub" data-i18n="hero.champ.sub">Ligue 1 Côte d'Ivoire</div>
+    </div>
+    <div class="score-cta">
+      <a href="#fixtures" data-i18n="hero.ticket">Billetterie →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GOLD DIVIDER -->
+<div class="gold-line"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-label">⚡ Live</span>
+  <div class="ticker-track" id="ticker-track">
+    <span><strong>USDI FC 3 – 1 AS Tanda</strong> · Ligue 1 J.18</span>
+    <span><strong>Kouassi Méité</strong> — 18 buts cette saison</span>
+    <span><strong>USDI Espoirs</strong> — Demi-finales U21</span>
+    <span><strong>Détection 2026</strong> — Ouvert jusqu'au 31 Mai</span>
+    <span><strong>Nouveau maillot 2026</strong> noir &amp; or</span>
+    <span><strong>USDI FC 3 – 1 AS Tanda</strong> · Ligue 1 J.18</span>
+    <span><strong>Kouassi Méité</strong> — 18 buts cette saison</span>
+    <span><strong>USDI Espoirs</strong> — Demi-finales U21</span>
+    <span><strong>Détection 2026</strong> — Ouvert jusqu'au 31 Mai</span>
+    <span><strong>Nouveau maillot 2026</strong> noir &amp; or</span>
+  </div>
+</div>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item"><div class="stat-num">21</div><div class="stat-lbl" data-i18n="stat.matches">Matchs</div></div>
+  <div class="stat-item"><div class="stat-num">14</div><div class="stat-lbl" data-i18n="stat.wins">Victoires</div></div>
+  <div class="stat-item"><div class="stat-num">38</div><div class="stat-lbl" data-i18n="stat.goals">Buts</div></div>
+  <div class="stat-item"><div class="stat-num">240+</div><div class="stat-lbl" data-i18n="stat.members">Membres</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl" data-i18n="stat.trophies">Trophées</div></div>
+</div>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n="news.heading">Actualités</h2>
+      <a href="#" data-i18n="news.viewall">Tout voir →</a>
+    </div>
+    <div class="cat-tabs">
+      <span class="cat-tab active" data-cat="all"       data-i18n="tab.all">Tout</span>
+      <span class="cat-tab" data-cat="match"            data-i18n="tab.match">Match</span>
+      <span class="cat-tab" data-cat="club"             data-i18n="tab.club">Club</span>
+      <span class="cat-tab" data-cat="formation"        data-i18n="tab.academy">Formation</span>
+      <span class="cat-tab" data-cat="galerie"          data-i18n="tab.gallery">Galerie</span>
+    </div>
+
+    <!-- Featured article -->
+    <div class="news-featured" onclick="location.href='#'">
+      <div class="news-featured-img" style="background:url('img/match-featured.jpg') center/cover no-repeat;font-size:0"></div>
+      <div class="news-featured-overlay"></div>
+      <div class="news-featured-body">
+        <span class="news-tag" data-i18n="tab.match">Match</span>
+        <div class="news-featured-title" data-i18n="news.featured.title">USDI FC 3 – 1 AS Tanda : Une victoire de caractère</div>
+        <div class="news-meta" data-i18n="news.featured.meta">10 Mai 2026 · 5 min de lecture</div>
+      </div>
+    </div>
+
+    <!-- News list -->
+    <div class="news-list" id="news-list"></div>
+  </div>
+</section>
+
+<!-- NEXT MATCH -->
+<div class="next-match-section">
+  <div class="next-match-label" data-i18n="sidebar.next">PROCHAIN MATCH</div>
+  <div class="match-widget">
+    <div class="match-date">Ligue 1 · 17 Mai · 15h00</div>
+    <div class="match-teams-row">
+      <div class="match-club">
+        <div class="match-club-badge" style="background:#000;padding:2px;">
+          <img src="img/logo.png" alt="USDI FC" style="width:100%;height:100%;object-fit:contain;border-radius:50%;display:block;" />
+        </div>
+        <div class="match-club-name">USDI FC</div>
+      </div>
+      <div class="match-vs">VS</div>
+      <div class="match-club">
+        <div class="match-club-badge opp">⚽</div>
+        <div class="match-club-name">Racing Club</div>
+      </div>
+    </div>
+    <a href="#" class="btn-ticket" data-i18n="sidebar.ticket">Billetterie</a>
+  </div>
+</div>
+
+<!-- STANDINGS -->
+<div class="standings-section">
+  <div class="standings-label" data-i18n="sidebar.standings">CLASSEMENT</div>
+  <div class="standing-row top">
+    <span class="standing-pos">1</span>
+    <span class="standing-club">USDI FC</span>
+    <span class="standing-pts">26 pts</span>
+  </div>
+  <div class="standing-row">
+    <span class="standing-pos">2</span>
+    <span class="standing-club">SC Union</span>
+    <span class="standing-pts">22 pts</span>
+  </div>
+  <div class="standing-row">
+    <span class="standing-pos">3</span>
+    <span class="standing-club">AS Rivière</span>
+    <span class="standing-pts">19 pts</span>
+  </div>
+  <div class="standing-row">
+    <span class="standing-pos">4</span>
+    <span class="standing-club">FC Delta</span>
+    <span class="standing-pts">15 pts</span>
+  </div>
+</div>
+
+<!-- FIXTURES -->
+<section class="fixtures-section" id="fixtures">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n-html="fixtures.heading">Résultats &amp; <span>Matchs</span></h2>
+      <a href="#" data-i18n="fixtures.all">Tous →</a>
+    </div>
+  </div>
+  <div class="fixtures-scroll" id="fixtures-scroll"></div>
+</section>
+
+<!-- SPOTLIGHT -->
+<div class="spotlight-section">
+  <div class="spotlight-bg"></div>
+  <div class="spotlight-fade"></div>
+  <div class="spotlight-content">
+    <div class="spotlight-eye" data-i18n="spotlight.eye">Joueur du mois</div>
+    <div class="spotlight-name">KOUASSI<br /><span>MÉITÉ</span></div>
+    <div class="spotlight-detail" data-i18n="spotlight.detail">Attaquant · #9 · 18 buts</div>
+  </div>
+</div>
+
+<!-- CLUB -->
+<section class="club-section" id="club">
+  <div class="section-wrap">
+    <div class="club-eyebrow" data-i18n="club.eyebrow">Qui sommes-nous</div>
+    <h2 data-i18n-html="club.title">Un club fondé sur<br /><em>l'Opportunité</em></h2>
+    <p data-i18n="club.p1">Fondé en Côte d'Ivoire, l'USDI FC a été créé pour offrir aux jeunes footballeurs talentueux une véritable chance — un environnement professionnel, un encadrement de haut niveau, et un chemin clair vers une carrière dans le football.</p>
+    <p data-i18n="club.p2">Nous croyons que le talent est partout. Notre mission est de le découvrir, de le développer, et de le porter sur la scène mondiale.</p>
+    <div class="club-stats">
+      <div class="club-stat"><div class="val">3</div><div class="lbl" data-i18n="club.stat.teams">Équipes</div></div>
+      <div class="club-stat"><div class="val">30+</div><div class="lbl" data-i18n="club.stat.players">Joueurs</div></div>
+      <div class="club-stat"><div class="val">2022</div><div class="lbl" data-i18n="club.stat.founded">Fondé</div></div>
+      <div class="club-stat"><div class="val">🇨🇮</div><div class="lbl">Côte d'Ivoire</div></div>
+    </div>
+    <div class="club-pillars">
+      <div class="club-pillar">
+        <div class="club-pillar-icon">🎯</div>
+        <div>
+          <h3 data-i18n="club.p1.title">Détection de Talents</h3>
+          <p data-i18n="club.p1.text">Identification des talents bruts dans toutes les régions via des tournées et essais ouverts.</p>
+        </div>
+      </div>
+      <div class="club-pillar">
+        <div class="club-pillar-icon">📚</div>
+        <div>
+          <h3 data-i18n="club.p2.title">Formation Professionnelle</h3>
+          <p data-i18n="club.p2.text">Programmes d'entraînement quotidiens structurés, conçus par des entraîneurs certifiés UEFA.</p>
+        </div>
+      </div>
+      <div class="club-pillar">
+        <div class="club-pillar-icon">🌍</div>
+        <div>
+          <h3 data-i18n="club.p3.title">Passerelles de Carrière</h3>
+          <p data-i18n="club.p3.text">Liens entre les talents ivoiriens et les clubs à travers l'Afrique et l'Europe.</p>
+        </div>
+      </div>
+      <div class="club-pillar">
+        <div class="club-pillar-icon">🤝</div>
+        <div>
+          <h3 data-i18n="club.p4.title">Communauté &amp; Diaspora</h3>
+          <p data-i18n="club.p4.text">Unir la diaspora ivoirienne autour d'une passion partagée et de la fierté des talents locaux.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN CTA -->
+<div class="join-cta-section">
+  <h3 data-i18n="sidebar.join.title">REJOINDRE LE CLUB</h3>
+  <p data-i18n="sidebar.join.text">Centre de formation ouvert. Détection de talents disponible pour tous profils.</p>
+  <a href="https://wa.me/+436607118373" target="_blank" rel="noopener" class="btn-join-big" data-i18n="sidebar.apply">Postuler maintenant →</a>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section" id="contact">
+  <h3 data-i18n="newsletter.title">NEWSLETTER USDI FC</h3>
+  <p data-i18n="newsletter.sub">Recevez actualités, résultats et événements du club dans votre boîte mail.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="votre@email.com" data-i18n-ph="newsletter.input" />
+    <button class="btn-subscribe" data-i18n="newsletter.btn">S'inscrire →</button>
+  </div>
+</div>
+
+<!-- PARTNERS -->
+<section class="partners-section">
+  <div class="section-wrap">
+    <div class="section-heading">
+      <h2 data-i18n-html="partners.heading">Nos <span>Partenaires</span></h2>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card">Partenaire 1</div>
+      <div class="partner-card">Partenaire 2</div>
+      <div class="partner-card">Partenaire 3</div>
+      <div class="partner-card">Partenaire 4</div>
+      <div class="partner-card">Partenaire 5</div>
+      <div class="partner-card">Partenaire 6</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand section-wrap">
+    <div class="footer-logo">
+      <img src="img/logo.png" alt="USDI FC" class="footer-logo-img" />
+      <div>
+        <div class="footer-logo-name">USDI FC</div>
+        <div class="footer-logo-sub">Union Sportive de la Diaspora</div>
+      </div>
+    </div>
+    <p data-i18n="footer.brand">Club de football et centre de formation — construisons les champions de demain depuis la Côte d'Ivoire. Ensemble, on va plus loin.</p>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/unionsportivedeladiaspora/" target="_blank" class="footer-social" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/unionsportivedeladiaspora" target="_blank" class="footer-social" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://x.com/fcusdi" target="_blank" class="footer-social" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" class="footer-social" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.flickr.com/photos/202598756@N03/albums/" target="_blank" class="footer-social" title="Flickr"><i class="fa-brands fa-flickr"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-accordion">
+    <div class="footer-acc-item">
+      <button class="footer-acc-toggle" onclick="toggleAcc(this)">
+        <span data-i18n="footer.col1">Club</span>
+        <span class="footer-acc-icon">▾</span>
+      </button>
+      <div class="footer-acc-body">
+        <ul>
+          <li><a href="#club" data-i18n="footer.about">À propos</a></li>
+          <li><a href="#" data-i18n="footer.teams">Nos équipes</a></li>
+          <li><a href="#players" data-i18n="footer.players">Joueurs</a></li>
+          <li><a href="#" data-i18n="footer.academy">Académie</a></li>
+          <li><a href="#" data-i18n="footer.staff">Staff technique</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-acc-item">
+      <button class="footer-acc-toggle" onclick="toggleAcc(this)">
+        <span data-i18n="footer.col2">Actualités</span>
+        <span class="footer-acc-icon">▾</span>
+      </button>
+      <div class="footer-acc-body">
+        <ul>
+          <li><a href="#news" data-i18n="footer.latest">Dernières news</a></li>
+          <li><a href="#fixtures" data-i18n="footer.results">Résultats</a></li>
+          <li><a href="#" data-i18n="footer.reports">Rapports de match</a></li>
+          <li><a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" data-i18n="footer.gallery">Galerie vidéo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-acc-item">
+      <button class="footer-acc-toggle" onclick="toggleAcc(this)">
+        <span data-i18n="footer.col3">Contact</span>
+        <span class="footer-acc-icon">▾</span>
+      </button>
+      <div class="footer-acc-body">
+        <ul>
+          <li><a href="mailto:contact@fcusdi.com">contact@fcusdi.com</a></li>
+          <li><a href="#" data-i18n="footer.sponsor">Sponsoring</a></li>
+          <li><a href="#club" data-i18n="footer.trials">Info détection</a></li>
+          <li><a href="#" data-i18n="footer.media">Relations presse</a></li>
+          <li><a href="#" data-i18n="footer.partner">Partenariats</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom section-wrap">
+    <span data-i18n="footer.copy">© 2026 USDI FC. Tous droits réservés.</span>
+    <div class="footer-bottom-links">
+      <a href="#" data-i18n="footer.legal">Mentions légales</a>
+      <a href="#" data-i18n="footer.privacy">Confidentialité</a>
+      <a href="https://linktr.ee/fcusdi" target="_blank">Linktree</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a class="bottom-nav-item active" href="#home">
+    <i class="fa-solid fa-house bn-icon"></i>
+    <span data-i18n="nav.home">Accueil</span>
+  </a>
+  <a class="bottom-nav-item" href="#news">
+    <i class="fa-solid fa-newspaper bn-icon"></i>
+    <span data-i18n="nav.news">News</span>
+  </a>
+  <a class="bottom-nav-item" href="#fixtures">
+    <i class="fa-solid fa-futbol bn-icon"></i>
+    <span data-i18n="nav.results">Matchs</span>
+  </a>
+  <a class="bottom-nav-item join-btn" href="https://wa.me/+436607118373" target="_blank">
+    <i class="fa-solid fa-star bn-icon"></i>
+    <span data-i18n="nav.join">Rejoindre</span>
+  </a>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script>
+  /* ── DRAWER ── */
+  function openDrawer() {
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawer-overlay').classList.add('open');
+    document.getElementById('hamburger').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('drawer-overlay').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function toggleDrawer() {
+    if (document.getElementById('drawer').classList.contains('open')) closeDrawer();
+    else openDrawer();
+  }
+
+  /* ── FOOTER ACCORDION ── */
+  function toggleAcc(btn) {
+    const item = btn.closest('.footer-acc-item');
+    item.classList.toggle('open');
+  }
+
+  /* ── CATEGORY TABS ── */
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  /* ── NEWS LIST ── */
+  const nl = document.getElementById('news-list');
+  nl.innerHTML = NEWS.map(n => `
+    <div class="news-card-sm" onclick="${n.link ? `window.open('${n.link}','_blank')` : `location.href='#'`}">
+      <div class="news-card-sm-img" style="${n.photo
+        ? `background:url('../${n.photo}') center/cover no-repeat;font-size:0`
+        : ''}">
+        ${n.photo ? '' : n.emoji}
+      </div>
+      <div class="news-card-sm-body">
+        <span class="news-tag">${n.tag}</span>
+        <div class="news-card-sm-title">${n.title}</div>
+        <div class="news-meta">${n.date}</div>
+      </div>
+    </div>
+  `).join('');
+
+  /* ── FIXTURES ── */
+  const fs = document.getElementById('fixtures-scroll');
+  fs.innerHTML = FIXTURES.map(f => `
+    <div class="fixture-card result-${f.result}">
+      <div class="fixture-competition">${f.competition}</div>
+      <div class="fixture-teams">
+        <span class="fixture-team home">${f.home}</span>
+        <span class="fixture-team away">${f.away}</span>
+      </div>
+      <span class="fixture-score-box">${f.score}</span>
+      <div class="fixture-date">${f.date}</div>
+    </div>
+  `).join('');
+
+  /* ── PLAYERS ── */
+  const ps = document.getElementById('players-scroll');
+  ps.innerHTML = PLAYERS.map(p => `
+    <div class="player-card" onclick="location.href='#'">
+      <div class="player-card-img">
+        ${p.photo ? `<img src="../${p.photo}" alt="${p.name}" onerror="this.style.display='none'" />` : ''}
+        <span style="${p.photo ? 'display:none' : ''}">${p.emoji}</span>
+        <span class="player-card-num">#${p.number}</span>
+      </div>
+      <div class="player-card-body">
+        <span class="player-pos-tag pos-${p.position}">${p.position}</span>
+        <h3>${p.name}</h3>
+        <div class="player-team">${p.team}</div>
+        <div class="player-card-stats">
+          <div class="pcs"><div class="v">${p.stats.appearances}</div><div class="l">Apps</div></div>
+          <div class="pcs"><div class="v">${p.stats.goals}</div><div class="l">Buts</div></div>
+          ${p.stats.assists !== undefined ? `<div class="pcs"><div class="v">${p.stats.assists}</div><div class="l">Passes</div></div>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  /* ── BOTTOM NAV ACTIVE STATE ── */
+  const sections = ['home','news','fixtures','club'];
+  const navItems = document.querySelectorAll('.bottom-nav-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio >= 0.4) {
+        const idx = sections.indexOf(e.target.id);
+        if (idx >= 0) {
+          navItems.forEach(n => n.classList.remove('active'));
+          navItems[idx].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+
+</body>
 </html>
