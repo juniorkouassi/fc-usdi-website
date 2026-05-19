@@ -301,5 +301,5 @@ function setLang(lang) { applyLang(lang); }
 
 /* ── Boot on DOM ready ── */
 document.addEventListener('DOMContentLoaded', () => {
-  applyLang(localStorage.getItem('usdilang') || 'fr');
+  applyLang(localStorage.getItem('usdilang') || 'en');
 });
