@@ -60,6 +60,32 @@ ul { list-style:none; }
   transition: background var(--transition), color var(--transition);
 }
 .announce-socials a:hover { background: rgba(0,0,0,0.35); }
+.announce-lang {
+  display: flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid rgba(0,0,0,0.25);
+  gap: 0;
+}
+.announce-lang .lang-switcher {
+  border: 1px solid rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+.announce-lang .lang-btn {
+  padding: 0.15rem 0.45rem;
+  font-size: 0.6rem;
+  color: #000;
+  background: transparent;
+  gap: 0.2rem;
+}
+.announce-lang .lang-btn .fi {
+  width: 13px;
+  height: 10px;
+}
+.announce-lang .lang-btn.active { background: rgba(0,0,0,0.18); color: #000; font-weight: 700; }
+.announce-lang .lang-btn:hover  { background: rgba(0,0,0,0.28); color: #000; }
+.announce-lang .lang-sep { width: 1px; height: 14px; background: rgba(0,0,0,0.25); }
 
 /* ── NAVIGATION ── */
 .navbar {
