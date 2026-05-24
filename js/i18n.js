@@ -38,6 +38,12 @@ const T = {
     'tab.gallery':        'Galerie',
     'news.featured.title':'USDI FC 3 – 1 AS Tanda : Une victoire de caractère',
     'news.featured.meta': '10 Mai 2026 · 5 min de lecture',
+    /* News tags */
+    'news.tag.transfer':  'Transfert',
+    'news.tag.interview': 'Interview',
+    'news.tag.academy':   'Académie',
+    'news.tag.clubnews':  'Infos Club',
+    'news.tag.match':     'Match',
 
     /* Sidebar */
     'sidebar.next':       'PROCHAIN MATCH',
@@ -168,6 +174,12 @@ const T = {
     'tab.gallery':        'Gallery',
     'news.featured.title':'USDI FC 3 – 1 AS Tanda: A character win',
     'news.featured.meta': '10 May 2026 · 5 min read',
+    /* News tags */
+    'news.tag.transfer':  'Transfer',
+    'news.tag.interview': 'Interview',
+    'news.tag.academy':   'Academy',
+    'news.tag.clubnews':  'Club News',
+    'news.tag.match':     'Match',
 
     /* Sidebar */
     'sidebar.next':       'NEXT MATCH',

@@ -16,10 +16,10 @@ const PLAYERS = [
 ];
 
 const NEWS = [
-  { tag:"Transfer", title:"Espoirs Sign Promising U21 Winger from Bouaké", date:"08 May 2025", emoji:"📝", color1:"#1a2a0a", color2:"#0a1628", photo:"img/transfer.jpg" },
-  { tag:"Interview", title:"Coach Kouakou: 'This squad can achieve something special'", date:"06 May 2025", emoji:"🎙️", color1:"#1a0a00", color2:"#2d1507", photo:"img/interview.jpg" },
-  { tag:"Academy", title:"USDI U15 Crowned Regional Academy Champions", date:"04 May 2025", emoji:"🏅", color1:"#1a0a2a", color2:"#0a1628", photo:"img/academy.jpg" },
-  { tag:"Club News", title:"FC USDI Announce New Partnership with Regional Sports Authority", date:"01 May 2025", emoji:"🤝", color1:"#0a2a1a", color2:"#1a0a00", photo:"img/club-news.jpg", link:"https://abidjanpress.com/pre-saison-lusdi-na-pas-tremble-devant-lasec/" },
+  { tagKey:"news.tag.transfer", tag:"Transfer", title:"Espoirs Sign Promising U21 Winger from Bouaké", date:"08 May 2025", emoji:"📝", color1:"#1a2a0a", color2:"#0a1628", photo:"img/transfer.jpg" },
+  { tagKey:"news.tag.interview", tag:"Interview", title:"Coach Kouakou: 'This squad can achieve something special'", date:"06 May 2025", emoji:"🎙️", color1:"#1a0a00", color2:"#2d1507", photo:"img/interview.jpg" },
+  { tagKey:"news.tag.academy", tag:"Academy", title:"USDI U15 Crowned Regional Academy Champions", date:"04 May 2025", emoji:"🏅", color1:"#1a0a2a", color2:"#0a1628", photo:"img/academy.jpg" },
+  { tagKey:"news.tag.clubnews", tag:"Club News", title:"FC USDI Announce New Partnership with Regional Sports Authority", date:"01 May 2025", emoji:"🤝", color1:"#0a2a1a", color2:"#1a0a00", photo:"img/club-news.jpg", link:"https://abidjanpress.com/pre-saison-lusdi-na-pas-tremble-devant-lasec/" },
 ];
 
 const FIXTURES = [
