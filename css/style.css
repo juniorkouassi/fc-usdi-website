@@ -1058,11 +1058,52 @@ ul { list-style:none; }
 }
 .club-pillar:hover { background: var(--black-light); }
 .club-pillar-icon {
-  font-size: 1.5rem;
+  font-size: 0;           /* suppress any leftover emoji */
   flex-shrink: 0;
-  width: 40px;
-  text-align: center;
-  margin-top: 0.1rem;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 0.15rem;
+}
+/* Outer diamond — acts as the gold border */
+.club-pillar-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,215,0,0.38);
+  transform: rotate(45deg);
+  border-radius: 6px;
+  box-shadow: 0 0 18px rgba(255,215,0,0.18);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+/* Inner diamond — dark fill */
+.club-pillar-icon::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: #111;
+  transform: rotate(45deg);
+  border-radius: 4px;
+}
+/* Icon itself floats above both pseudo-elements */
+.club-pillar-icon i {
+  font-size: 1.15rem;
+  color: var(--gold);
+  filter: drop-shadow(0 0 6px rgba(255,215,0,0.65));
+  position: relative;
+  z-index: 1;
+  transition: filter var(--transition);
+}
+.club-pillar:hover .club-pillar-icon::before {
+  background: rgba(255,215,0,0.6);
+  box-shadow: 0 0 28px rgba(255,215,0,0.32);
+}
+.club-pillar:hover .club-pillar-icon i {
+  filter: drop-shadow(0 0 10px rgba(255,215,0,0.9));
 }
 .club-pillar h3 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
 .club-pillar p { font-size: 0.75rem; color: var(--gray-3); line-height: 1.6; }
