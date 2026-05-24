@@ -1769,23 +1769,31 @@ ul { list-style:none; }
   .hero-content {
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: stretch;      /* stretch so hero-main can go full width */
     padding: 0.75rem 2rem 50px;
   }
-  .hero-main     { flex: 0 0 auto; max-width: 55%; padding-bottom: 0; }
+  /* hero-main spans full content width so title-row can push badge to right edge */
+  .hero-main     { flex: 0 0 auto; max-width: 100%; width: 100%; padding-bottom: 0; }
   .hero-season   { font-size: 0.58rem; margin-bottom: 0.2rem; letter-spacing: 0.15em; }
-  .hero-title    { font-size: clamp(1.4rem, 3.8vw, 2rem); line-height: 0.88; margin-bottom: 0.5rem; }
+  /* Title row: title on the left, badge pinned to right edge */
+  .hero-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+  }
+  .hero-title    { flex: 0 0 auto; font-size: clamp(1.4rem, 3.8vw, 2rem); line-height: 0.88; margin-bottom: 0.5rem; }
   .hero-subtitle { display: none; }
-  .hero-ctas     { gap: 0.45rem; }
+  /* CTAs stay left, constrained so they don't stretch under the badge */
+  .hero-ctas     { gap: 0.45rem; max-width: 55%; }
   .btn-hero-primary,
   .btn-hero-ghost { padding: 0.4rem 0.9rem; font-size: 0.7rem; }
 
-  /* Badge : landscape — inside hero-title-row, aligned with title */
-  .hero-title-row { display: flex; align-items: center; gap: 1rem; }
-  .hero-title     { flex: 1; min-width: 0; }
+  /* Badge : right edge, same line as title */
   .hero-badge-wrap { display: flex !important; position: static; right: auto; top: auto; transform: none; flex-shrink: 0; }
-  .hero-badge-ring { width: 88px; height: 88px; border-width: 2px; box-shadow: 0 0 30px rgba(255,215,0,0.2); }
-  .hero-badge-logo { width: 68px; height: 68px; }
+  .hero-badge-ring { width: 92px; height: 92px; border-width: 2px; box-shadow: 0 0 30px rgba(255,215,0,0.2); }
+  .hero-badge-logo { width: 72px; height: 72px; }
   .hero-badge-label { font-size: 0.38rem; margin-top: 0.2rem; line-height: 1.4; }
 
   /* Barre de score compacte */
