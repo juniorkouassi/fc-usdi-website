@@ -18,7 +18,7 @@ const PLAYERS = [
 const NEWS = [
   { tagKey:"news.tag.transfer",  tag:"Transfer",  titleKey:"news.1.title", dateKey:"news.1.date", title:"Espoirs Sign Promising U21 Winger from Bouaké",                               date:"08 May 2025", emoji:"📝", color1:"#1a2a0a", color2:"#0a1628", photo:"img/transfer.jpg" },
   { tagKey:"news.tag.interview", tag:"Interview", titleKey:"news.2.title", dateKey:"news.2.date", title:"Coach Pacome Kaple: 'This squad can achieve something special'",                    date:"06 May 2025", emoji:"🎙️", color1:"#1a0a00", color2:"#2d1507", photo:"img/interview.jpg" },
-  { tagKey:"news.tag.academy",   tag:"Academy",   titleKey:"news.3.title", dateKey:"news.3.date", title:"USDI beat Stade d'Abidjan 2-0",                                  date:"04 May 2025", emoji:"🏅", color1:"#1a0a2a", color2:"#0a1628", photo:"img/academy.jpg" },
+  { tagKey:"news.tag.academy",   tag:"Academy",   titleKey:"news.3.title", dateKey:"news.3.date", title:"USDI beat Stade d'Abidjan 2-0",                                  date:"04 May 2025", emoji:"🏅", color1:"#1a0a2a", color2:"#0a1628", photo:"img/academy.jpg", link:"https://youtu.be/OLtp9GHb43s?si=mJCpSv8dmzxoBE39" },
   { tagKey:"news.tag.clubnews",  tag:"Club News", titleKey:"news.4.title", dateKey:"news.4.date", title:"FC USDI Announce New Partnership with Regional Sports Authority",               date:"01 May 2025", emoji:"🤝", color1:"#0a2a1a", color2:"#1a0a00", photo:"img/club-news.jpg", link:"https://abidjanpress.com/pre-saison-lusdi-na-pas-tremble-devant-lasec/" },
 ];
 
