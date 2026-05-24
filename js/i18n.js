@@ -28,6 +28,13 @@ const T = {
     'hero.champ.sub':     'Ligue 1 Côte d\'Ivoire',
     'hero.ticket':        'Billetterie →',
 
+    /* Ticker */
+    'ticker.1': '<strong>USDI FC 3 – 1 AS Tanda</strong> · Ligue 1 J.18',
+    'ticker.2': '<strong>Kouassi Méité</strong> — 18 buts cette saison',
+    'ticker.3': '<strong>USDI Espoirs</strong> — Demi-finales U21',
+    'ticker.4': '<strong>Détection de Talents 2026</strong> — Ouvert jusqu\'au 31 Mai',
+    'ticker.5': '<strong>Nouveau maillot 2026</strong> — noir &amp; or',
+
     /* News */
     'news.heading':       'Actualités',
     'news.viewall':       'Tout voir →',
@@ -172,6 +179,13 @@ const T = {
     'hero.champ':         'Championship',
     'hero.champ.sub':     'Ligue 1 Côte d\'Ivoire',
     'hero.ticket':        'Tickets →',
+
+    /* Ticker */
+    'ticker.1': '<strong>USDI FC 3 – 1 AS Tanda</strong> · Ligue 1 J.18',
+    'ticker.2': '<strong>Kouassi Méité</strong> — 18 goals this season',
+    'ticker.3': '<strong>USDI Espoirs</strong> — U21 semi-finals',
+    'ticker.4': '<strong>Talent Detection 2026</strong> — Open until May 31',
+    'ticker.5': '<strong>New kit 2026</strong> — black &amp; gold',
 
     /* News */
     'news.heading':       'News',
