@@ -45,7 +45,7 @@ const T = {
     'news.tag.clubnews':  'Infos Club',
     'news.tag.match':     'Match',
     /* News titles & dates */
-    'news.1.title': 'Les Espoirs recrutent un ailier U21 prometteur de Bouaké',
+    'news.1.title': 'L\'USDI prête 5 joueurs en Division d\'honneur et de Ligue 2',
     'news.1.date':  '08 Mai 2025',
     'news.2.title': 'Coach Pacome Kaple : « Cette équipe peut accomplir quelque chose de spécial »',
     'news.2.date':  '06 Mai 2025',
@@ -190,7 +190,7 @@ const T = {
     'news.tag.clubnews':  'Club News',
     'news.tag.match':     'Match',
     /* News titles & dates */
-    'news.1.title': 'Espoirs Sign Promising U21 Winger from Bouaké',
+    'news.1.title': 'USDI loans 5 players to Division d\'honneur and Ligue 2',
     'news.1.date':  '08 May 2025',
     'news.2.title': 'Coach Pacome Kaple: \'This squad can achieve something special\'',
     'news.2.date':  '06 May 2025',
