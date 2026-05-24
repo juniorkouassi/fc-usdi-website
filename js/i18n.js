@@ -44,6 +44,15 @@ const T = {
     'news.tag.academy':   'Académie',
     'news.tag.clubnews':  'Infos Club',
     'news.tag.match':     'Match',
+    /* News titles & dates */
+    'news.1.title': 'Les Espoirs recrutent un ailier U21 prometteur de Bouaké',
+    'news.1.date':  '08 Mai 2025',
+    'news.2.title': 'Coach Kouakou : « Cette équipe peut accomplir quelque chose de spécial »',
+    'news.2.date':  '06 Mai 2025',
+    'news.3.title': 'Les U15 de l\'USDI sacrés champions régionaux de l\'académie',
+    'news.3.date':  '04 Mai 2025',
+    'news.4.title': 'L\'USDI FC annonce un nouveau partenariat avec la Direction Régionale des Sports',
+    'news.4.date':  '01 Mai 2025',
 
     /* Sidebar */
     'sidebar.next':       'PROCHAIN MATCH',
@@ -180,6 +189,15 @@ const T = {
     'news.tag.academy':   'Academy',
     'news.tag.clubnews':  'Club News',
     'news.tag.match':     'Match',
+    /* News titles & dates */
+    'news.1.title': 'Espoirs Sign Promising U21 Winger from Bouaké',
+    'news.1.date':  '08 May 2025',
+    'news.2.title': 'Coach Kouakou: \'This squad can achieve something special\'',
+    'news.2.date':  '06 May 2025',
+    'news.3.title': 'USDI U15 Crowned Regional Academy Champions',
+    'news.3.date':  '04 May 2025',
+    'news.4.title': 'FC USDI Announce New Partnership with Regional Sports Authority',
+    'news.4.date':  '01 May 2025',
 
     /* Sidebar */
     'sidebar.next':       'NEXT MATCH',
