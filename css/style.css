@@ -1639,40 +1639,125 @@ ul { list-style:none; }
   .section-heading h2 { font-size: 1.3rem; }
 }
 
-/* ── Landscape phone (e.g. Samsung 915×412, 932×430) ── */
-@media (orientation: landscape) and (max-height: 520px) {
-  /* Hero: fill viewport below announce bar + navbar */
+/* ══════════════════════════════════════════════════════════════════
+   LANDSCAPE MOBILE — téléphones (h ≤ 500px)
+   Samsung S20/S25/S26 Ultra  915×412
+   Samsung S25+               926×428
+   Samsung S25                900×412
+   iPhone 14 Pro Max / 15+    932×430
+   iPhone SE landscape        667×375
+   ══════════════════════════════════════════════════════════════════ */
+@media (orientation: landscape) and (max-height: 500px) {
+
+  /* ── 1. Barres cachées → récupère ~80px de hauteur ── */
+  .announce-bar { display: none !important; }
+  .bottom-nav   { display: none !important; }
+  body          { padding-bottom: 0 !important; overflow-x: hidden; }
+
+  /* ── 2. Navbar compact (46px) ── */
+  .navbar        { height: 46px; padding: 0 1.25rem; gap: 1rem; }
+  .nav-logo-img  { width: 26px; height: 26px; }
+  .nav-logo-text { font-size: 1.1rem; }
+  .nav-links a   { height: 46px; padding: 0 0.55rem; font-size: 0.52rem; gap: 0.1rem; }
+  .nav-links a i { font-size: 0.78rem; }
+  .nav-actions   { gap: 0.5rem; }
+  .btn-nav       { padding: 0.26rem 0.7rem; font-size: 0.6rem; }
+  .lang-btn      { padding: 0.18rem 0.35rem; font-size: 0.56rem; }
+  .lang-btn .fi  { width: 13px !important; height: 10px !important; }
+
+  /* ── 3. Hero : remplit le viewport restant (~366px @ 412 total) ── */
   .hero {
-    height: calc(100vh - 94px); /* 34 announce + 60 navbar */
-    min-height: 250px;
+    height: calc(100vh - 46px);
+    min-height: 240px;
   }
-  /* Stack content at bottom like mobile */
+  /* Texte empilé en bas à gauche */
   .hero-content {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 0.75rem 2.5rem 58px;
+    padding: 0.75rem 2rem 50px;
   }
-  .hero-main { flex: 0 0 auto; max-width: 55%; padding-bottom: 0; }
-  .hero-title { font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 0.88; }
+  .hero-main     { flex: 0 0 auto; max-width: 55%; padding-bottom: 0; }
+  .hero-season   { font-size: 0.58rem; margin-bottom: 0.2rem; letter-spacing: 0.15em; }
+  .hero-title    { font-size: clamp(1.4rem, 3.8vw, 2rem); line-height: 0.88; margin-bottom: 0.5rem; }
   .hero-subtitle { display: none; }
-  .hero-season { margin-bottom: 0.3rem; font-size: 0.6rem; }
-  .hero-ctas { gap: 0.5rem; }
-  .btn-hero-primary, .btn-hero-ghost { padding: 0.45rem 0.9rem; font-size: 0.72rem; }
-  /* Hide badge — not enough space */
-  .hero-badge-wrap { display: none !important; }
-  /* Compact score bar */
-  .score-item { padding: 0.4rem 0.8rem; }
-  .score-value { font-size: 0.82rem; }
-  .score-sub { font-size: 0.5rem; }
-  .score-label { font-size: 0.5rem; letter-spacing: 0.1em; }
-  /* Compact ticker */
-  .ticker { height: 30px; }
-  .ticker-label { font-size: 0.58rem; padding: 0 0.75rem; }
-  .ticker-track span { font-size: 0.62rem; }
-  /* News featured shorter */
-  .news-featured-img { height: 180px; }
-  /* Section spacing tighter */
-  .news-section, .fixtures-section, .partners-section { padding: 1rem 0; }
-  .club-section { padding: 1.5rem 0; }
+  .hero-ctas     { gap: 0.45rem; }
+  .btn-hero-primary,
+  .btn-hero-ghost { padding: 0.4rem 0.9rem; font-size: 0.7rem; }
+
+  /* Badge : petit, en haut à droite */
+  .hero-badge-wrap { display: flex !important; right: 1.5rem; top: 0.75rem; transform: none; }
+  .hero-badge-ring { width: 88px; height: 88px; border-width: 2px; box-shadow: 0 0 30px rgba(255,215,0,0.2); }
+  .hero-badge-logo { width: 68px; height: 68px; }
+  .hero-badge-label { font-size: 0.38rem; margin-top: 0.2rem; line-height: 1.4; }
+
+  /* Barre de score compacte */
+  .score-item   { flex: 1; min-width: 0; padding: 0.32rem 0.75rem; }
+  .score-label  { font-size: 0.46rem; letter-spacing: 0.1em; }
+  .score-value  { font-size: 0.78rem; letter-spacing: 0; }
+  .score-sub    { font-size: 0.44rem; }
+  .score-cta    { display: none; }
+
+  /* ── 4. Ticker masqué → gain ~38px ── */
+  .ticker { display: none; }
+
+  /* ── 5. Actualités ── */
+  .news-section      { padding: 0.875rem 0 0.75rem; }
+  .news-featured-img { height: 155px; }
+  /* 3 petites cartes côte à côte */
+  .news-small-row    { grid-template-columns: repeat(3, 1fr); }
+  .news-card-sm      { display: block; }
+  .news-card-sm-img  { width: 100%; height: 65px; }
+  .news-card-sm-body { padding: 0.5rem; }
+  .news-card-sm-title { font-size: 0.72rem; }
+
+  /* ── 6. Bande de stats ── */
+  .stats-band { display: flex; }
+  .stat-item  { padding: 0.65rem 0; }
+  .stat-num   { font-size: 2rem; }
+
+  /* ── 7. Résultats : carousel horizontal restauré ── */
+  .fixtures-section { padding: 0.875rem 0; }
+  .fixtures-strip   { flex-direction: row; overflow-x: auto; }
+  .fixture-card     { flex: 0 0 155px; display: block; padding: 0.7rem 1rem; width: auto; }
+  .fixture-competition { margin-bottom: 0.4rem; }
+  .fixture-teams       { margin-bottom: 0.3rem; }
+  .fixture-score-box   { display: block; margin: 0.2rem 0; }
+  .fixture-date        { white-space: normal; }
+
+  /* ── 8. Section Club : 2 colonnes ── */
+  .club-section  { padding: 1rem 0; }
+  .club-inner    { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  .club-content h2 { font-size: 1.8rem; }
+  .club-stats    { grid-template-columns: repeat(4, 1fr); display: grid; }
+  .club-stat .val { font-size: 1.3rem; }
+  .club-pillar   { padding: 0.75rem; }
+
+  /* ── 9. Newsletter : horizontale ── */
+  .newsletter-section { flex-direction: row; gap: 1.5rem; padding: 0.875rem 1.5rem; align-items: center; }
+  .newsletter-text h3 { font-size: 1.1rem; margin-bottom: 0.15rem; }
+  .newsletter-form    { flex: 0 0 300px; }
+
+  /* ── 10. Partenaires : 6 colonnes ── */
+  .partners-section { padding: 0.75rem 0; }
+  .partners-grid    { grid-template-columns: repeat(6, 1fr); }
+  .partner-card     { height: 60px; }
+
+  /* ── 11. Footer compact ── */
+  .footer { padding: 1rem 0 0.75rem; }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr !important; gap: 1.5rem; }
+  .footer-brand { grid-column: auto !important; }
+  .footer-bottom { padding: 0.6rem 0; }
+
+  /* ── 12. Espacements et titres ── */
+  .section-wrap    { padding: 0 1.25rem; }
+  .section-heading { margin-bottom: 0.75rem; }
+  .section-heading h2 { font-size: 1.4rem; }
+
+  /* ── 13. Pages internes ── */
+  .page-header    { padding: 0.75rem 1.25rem; }
+  .page-header h1 { font-size: 1.5rem; }
+  .teams-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+  .team-card-banner { height: 120px; }
+  .players-grid   { grid-template-columns: repeat(4, 1fr) !important; }
 }
