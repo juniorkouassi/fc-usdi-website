@@ -47,7 +47,7 @@ const T = {
     /* News titles & dates */
     'news.1.title': 'Les Espoirs recrutent un ailier U21 prometteur de Bouaké',
     'news.1.date':  '08 Mai 2025',
-    'news.2.title': 'Coach Kouakou : « Cette équipe peut accomplir quelque chose de spécial »',
+    'news.2.title': 'Coach Pacome Kaple : « Cette équipe peut accomplir quelque chose de spécial »',
     'news.2.date':  '06 Mai 2025',
     'news.3.title': 'Les U15 de l\'USDI sacrés champions régionaux de l\'académie',
     'news.3.date':  '04 Mai 2025',
@@ -192,7 +192,7 @@ const T = {
     /* News titles & dates */
     'news.1.title': 'Espoirs Sign Promising U21 Winger from Bouaké',
     'news.1.date':  '08 May 2025',
-    'news.2.title': 'Coach Kouakou: \'This squad can achieve something special\'',
+    'news.2.title': 'Coach Pacome Kaple: \'This squad can achieve something special\'',
     'news.2.date':  '06 May 2025',
     'news.3.title': 'USDI U15 Crowned Regional Academy Champions',
     'news.3.date':  '04 May 2025',
