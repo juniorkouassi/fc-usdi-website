@@ -1611,24 +1611,28 @@ ul { list-style:none; }
   /* Hero */
   .hero { height: 420px; }
   .hero-content {
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
     padding: 1.25rem 1.25rem 80px;
+    gap: 0.75rem;
   }
-  /* CRITICAL: reset flex:1 so content stays at bottom */
-  .hero-main { flex: 0 0 auto; max-width: 100%; padding-bottom: 0; }
-  .hero-title { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+  /* Text block: takes remaining width, sits at bottom */
+  .hero-main { flex: 1; min-width: 0; max-width: none; padding-bottom: 0; }
+  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
   .hero-subtitle { font-size: 0.7rem; }
   .hero-ctas { gap: 0.5rem; }
-  /* Show small badge top-right on mobile */
+  /* Badge: flows beside the text, centered on the title line */
   .hero-badge-wrap {
-    display: flex;
-    right: 1rem; top: 1rem;
+    position: static;
     transform: none;
+    right: auto; top: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-self: center;
   }
-  .hero-badge-ring { width: 76px; height: 76px; border-width: 2px; }
-  .hero-badge-logo { width: 58px; height: 58px; }
+  .hero-badge-ring { width: 80px; height: 80px; border-width: 2px; }
+  .hero-badge-logo { width: 62px; height: 62px; }
   .hero-badge-label { font-size: 0.4rem; margin-top: 0.25rem; }
   /* Score bar: shrink items so all 3 fit inside viewport width */
   .score-item { flex: 1; min-width: 0; padding: 0.5rem 0.6rem; }
@@ -1769,8 +1773,8 @@ ul { list-style:none; }
   .btn-hero-primary,
   .btn-hero-ghost { padding: 0.4rem 0.9rem; font-size: 0.7rem; }
 
-  /* Badge : petit, en haut à droite */
-  .hero-badge-wrap { display: flex !important; right: 1.5rem; top: 0.75rem; transform: none; }
+  /* Badge : landscape — static in flex row, aligned with title */
+  .hero-badge-wrap { display: flex !important; position: static; right: auto; top: auto; transform: none; align-self: center; }
   .hero-badge-ring { width: 88px; height: 88px; border-width: 2px; box-shadow: 0 0 30px rgba(255,215,0,0.2); }
   .hero-badge-logo { width: 68px; height: 68px; }
   .hero-badge-label { font-size: 0.38rem; margin-top: 0.2rem; line-height: 1.4; }
