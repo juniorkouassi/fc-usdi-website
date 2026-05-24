@@ -1406,6 +1406,23 @@ ul { list-style:none; }
   text-decoration: none;
 }
 .nav-drawer-join:hover { background: #fff; }
+.nav-drawer-lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 0.5rem;
+}
+.nav-drawer-lang .lang-switcher {
+  border-color: var(--gray-1);
+}
+.nav-drawer-lang .lang-btn {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.78rem;
+}
+.nav-drawer-lang .lang-btn .fi {
+  width: 18px;
+  height: 13px;
+}
 
 /* ─────────────────────────────────────────────
    BOTTOM NAV (mobile only)
