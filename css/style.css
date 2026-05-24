@@ -394,6 +394,9 @@ ul { list-style:none; }
 }
 .btn-hero-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
+/* Hero title row — transparent on desktop, flex row on mobile */
+.hero-title-row { display: block; }
+
 /* Hero logo badge */
 .hero-badge-logo {
   width: 160px;
@@ -1611,25 +1614,29 @@ ul { list-style:none; }
   /* Hero */
   .hero { height: 420px; }
   .hero-content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
     padding: 1.25rem 1.25rem 80px;
-    gap: 0.75rem;
   }
-  /* Text block: takes remaining width, sits at bottom */
-  .hero-main { flex: 1; min-width: 0; max-width: none; padding-bottom: 0; }
-  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+  /* CRITICAL: reset flex:1 so content stays at bottom */
+  .hero-main { flex: 0 0 auto; max-width: 100%; padding-bottom: 0; }
+  /* Title row: title + badge perfectly side-by-side on the same line */
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-title { flex: 1; min-width: 0; font-size: clamp(2rem, 8vw, 2.8rem); }
   .hero-subtitle { font-size: 0.7rem; }
   .hero-ctas { gap: 0.5rem; }
-  /* Badge: flows beside the text, centered on the title line */
+  /* Badge: pulled out of absolute flow, sits inside the title row */
   .hero-badge-wrap {
     position: static;
     transform: none;
     right: auto; top: auto;
     flex-shrink: 0;
     display: flex;
-    align-self: center;
   }
   .hero-badge-ring { width: 80px; height: 80px; border-width: 2px; }
   .hero-badge-logo { width: 62px; height: 62px; }
@@ -1773,8 +1780,10 @@ ul { list-style:none; }
   .btn-hero-primary,
   .btn-hero-ghost { padding: 0.4rem 0.9rem; font-size: 0.7rem; }
 
-  /* Badge : landscape — static in flex row, aligned with title */
-  .hero-badge-wrap { display: flex !important; position: static; right: auto; top: auto; transform: none; align-self: center; }
+  /* Badge : landscape — inside hero-title-row, aligned with title */
+  .hero-title-row { display: flex; align-items: center; gap: 1rem; }
+  .hero-title     { flex: 1; min-width: 0; }
+  .hero-badge-wrap { display: flex !important; position: static; right: auto; top: auto; transform: none; flex-shrink: 0; }
   .hero-badge-ring { width: 88px; height: 88px; border-width: 2px; box-shadow: 0 0 30px rgba(255,215,0,0.2); }
   .hero-badge-logo { width: 68px; height: 68px; }
   .hero-badge-label { font-size: 0.38rem; margin-top: 0.2rem; line-height: 1.4; }
