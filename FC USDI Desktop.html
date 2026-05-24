@@ -52,10 +52,24 @@
     </div>
     <a href="#club" class="btn-nav btn-nav-primary" data-i18n="nav.join">Rejoindre</a>
   </div>
-  <div class="nav-hamburger" id="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+  <div class="nav-hamburger" id="hamburger" onclick="document.getElementById('nav-drawer').classList.add('open')">
     <span></span><span></span><span></span>
   </div>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-close" onclick="document.getElementById('nav-drawer').classList.remove('open')">✕</div>
+  <div class="nav-drawer-links">
+    <a href="FC USDI Desktop.html" class="active" data-i18n="nav.home" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-house"></i>Accueil</a>
+    <a href="#news" data-i18n="nav.news" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-newspaper"></i>Actualités</a>
+    <a href="teams.html" data-i18n="nav.team" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-shield-halved"></i>Équipe</a>
+    <a href="#fixtures" data-i18n="nav.results" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-futbol"></i>Résultats</a>
+    <a href="#club" data-i18n="nav.club" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-star"></i>Club</a>
+    <a href="#contact" data-i18n="nav.contact" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-envelope"></i>Contact</a>
+  </div>
+  <a href="https://wa.me/+436607118373" target="_blank" class="nav-drawer-join" data-i18n="nav.join">Rejoindre</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -387,6 +401,32 @@
     </div>
   </div>
 </footer>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" aria-label="Navigation mobile">
+  <div class="bottom-nav-inner">
+    <a href="FC USDI Desktop.html" class="bottom-nav-item active">
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="nav.home">Accueil</span>
+    </a>
+    <a href="#news" class="bottom-nav-item">
+      <i class="fa-solid fa-newspaper"></i>
+      <span data-i18n="nav.news">Actualités</span>
+    </a>
+    <a href="#fixtures" class="bottom-nav-item">
+      <i class="fa-solid fa-futbol"></i>
+      <span data-i18n="nav.results">Résultats</span>
+    </a>
+    <a href="#club" class="bottom-nav-item">
+      <i class="fa-solid fa-star"></i>
+      <span data-i18n="nav.club">Club</span>
+    </a>
+    <a href="https://wa.me/+436607118373" target="_blank" class="bottom-nav-item bottom-nav-join">
+      <i class="fa-solid fa-plus"></i>
+      <span data-i18n="nav.join">Rejoindre</span>
+    </a>
+  </div>
+</nav>
 
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
