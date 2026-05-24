@@ -1603,6 +1603,7 @@ ul { list-style:none; }
 
   /* Navbar */
   .navbar { padding: 0 1rem; height: 54px; }
+  .nav-hamburger { margin-left: auto; }
 
   /* Announce bar */
   .announce-bar { padding: 0 0.75rem; }
