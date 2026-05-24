@@ -1607,6 +1607,9 @@ ul { list-style:none; }
   /* Announce bar */
   .announce-bar { padding: 0 0.75rem; }
   .announce-bar > div:first-child { display: none; }
+  /* Socials fill the full bar; lang switcher pushed to right edge */
+  .announce-socials { flex: 1; }
+  .announce-lang    { margin-left: auto; }
 
   /* Section wrap */
   .section-wrap { padding: 0 1rem; }
