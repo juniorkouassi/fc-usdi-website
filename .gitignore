@@ -3,3 +3,9 @@ node_modules/
 package-lock.json
 package.json
 .claude/
+.gitmodules
+.rtk/
+AMBACI VIENNA/
+AMBACI VIENNA MOBILE/
+WEB DESIGN MINDSET/
+CLAUDE.md
