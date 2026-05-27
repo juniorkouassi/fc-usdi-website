@@ -132,7 +132,7 @@ const T = {
     'footer.trials':      'Info détection',
     'footer.media':       'Relations presse',
     'footer.partner':     'Partenariats',
-    'footer.copy':        '© 2026 USDI FC — Union Sportive de la Diaspora. Tous droits réservés.',
+    'footer.copy':        '© 2026 Web Design Mindset. All rights reserved.',
     'footer.legal':       'Mentions légales',
     'footer.privacy':     'Politique de confidentialité',
 
@@ -284,7 +284,7 @@ const T = {
     'footer.trials':      'Trial Info',
     'footer.media':       'Media Enquiries',
     'footer.partner':     'Partner With Us',
-    'footer.copy':        '© 2026 USDI FC — Union Sportive de la Diaspora. All rights reserved.',
+    'footer.copy':        '© 2026 Web Design Mindset. All rights reserved.',
     'footer.legal':       'Legal Notice',
     'footer.privacy':     'Privacy Policy',
 
