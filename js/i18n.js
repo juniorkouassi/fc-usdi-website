@@ -339,6 +339,9 @@ function applyLang(lang) {
 
   /* persist */
   localStorage.setItem('usdilang', lang);
+
+  /* re-render language-aware JS sections */
+  if (window.renderFixtures) window.renderFixtures(lang);
 }
 
 function setLang(lang) { applyLang(lang); }

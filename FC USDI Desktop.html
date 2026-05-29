@@ -408,7 +408,7 @@
       <div class="footer-col">
         <h4 data-i18n="footer.col3">Contact</h4>
         <ul>
-          <li><a href="mailto:contact@fcusdi.com">contact@fcusdi.com</a></li>
+          <li><a href="mailto:fcusdi@yahoo.com">fcusdi@yahoo.com</a></li>
           <li><a href="#" data-i18n="footer.sponsor">Sponsoring</a></li>
           <li><a href="#club" data-i18n="footer.trials">Info détection</a></li>
           <li><a href="#" data-i18n="footer.media">Relations presse</a></li>
@@ -474,19 +474,44 @@
     </div>
   `).join('');
 
-  // Fixtures
-  const fs = document.getElementById('fixtures-strip');
-  fs.innerHTML = FIXTURES.map(f => `
-    <div class="fixture-card result-${f.result}">
-      <div class="fixture-competition">${f.competition}</div>
-      <div class="fixture-teams">
-        <span class="fixture-team home">${f.home}</span>
-        <span class="fixture-team away">${f.away}</span>
-      </div>
-      <span class="fixture-score-box">${f.score}</span>
-      <div class="fixture-date">${f.date}</div>
-    </div>
-  `).join('');
+  // Fixtures (language-aware)
+  const MONTHS_FR = {Jan:'Janv.',Feb:'Févr.',Mar:'Mars',Apr:'Avr.',May:'Mai',Jun:'Juin',Jul:'Juil.',Aug:'Août',Sep:'Sep.',Oct:'Oct.',Nov:'Nov.',Dec:'Déc.'};
+  const COMP_FR   = { Friendly:'Amical' };
+  const RESULT_LABELS = {
+    fr: { win:'Victoire', draw:'Nul', loss:'Défaite' },
+    en: { win:'Win',      draw:'Draw', loss:'Loss'   }
+  };
+
+  function translateDate(date, lang) {
+    if (lang !== 'fr') return date;
+    return date.replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/, m => MONTHS_FR[m] || m);
+  }
+
+  function renderFixtures(lang) {
+    const fs = document.getElementById('fixtures-strip');
+    if (!fs) return;
+    const rl = RESULT_LABELS[lang] || RESULT_LABELS.en;
+    fs.innerHTML = FIXTURES.map(f => {
+      const comp = lang === 'fr' ? (COMP_FR[f.competition] || f.competition) : f.competition;
+      const badge = f.result ? `<div class="fixture-result-label result-label-${f.result}">${rl[f.result] || ''}</div>` : '';
+      return `
+      <div class="fixture-card result-${f.result}">
+        <div class="fixture-competition">${comp}</div>
+        <div class="fixture-teams">
+          <span class="fixture-team home">${f.home}</span>
+          <span class="fixture-team away">${f.away}</span>
+        </div>
+        <span class="fixture-score-box">${f.score}</span>
+        <div class="fixture-footer">
+          <div class="fixture-date">${translateDate(f.date, lang)}</div>
+          ${badge}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.renderFixtures = renderFixtures;
+  renderFixtures(localStorage.getItem('usdilang') || 'en');
 
 
   // Category tabs
