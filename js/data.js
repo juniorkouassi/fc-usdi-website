@@ -1,5 +1,5 @@
 const TEAMS = [
-  { id:1, name:"FC USDI Seniors", category:"senior", color:"#f97316", emoji:"🦁", league:"Ligue 1 Côte d'Ivoire", founded:2022, playerCount:22, wins:14, draws:4, losses:3, coach:"Kouakou Jean-Paul", photo:"img/team-seniors.jpg" },
+  { id:1, name:"FC USDI Seniors", category:"senior", color:"#f97316", emoji:"🦁", league:"Friendly Côte d'Ivoire", founded:2022, playerCount:22, wins:14, draws:4, losses:3, coach:"Kouakou Jean-Paul", photo:"img/team-seniors.jpg" },
   { id:2, name:"USDI Espoirs (U20)", category:"youth", color:"#22c55e", emoji:"🌱", league:"Division Nationale U20", founded:2014, playerCount:20, wins:11, draws:5, losses:4, coach:"N'Guessan Brice", photo:"img/team-u20.jpg" },
   { id:3, name:"USDI U17", category:"youth", color:"#3b82f6", emoji:"⭐", league:"Championnat U17", founded:2016, playerCount:20, wins:9, draws:3, losses:5, coach:"Diabaté Seydou", photo:"img/team-u17.jpg" },
 ];
@@ -23,11 +23,11 @@ const NEWS = [
 ];
 
 const FIXTURES = [
-  { competition:"Ligue 1", home:"FC USDI", away:"Abidjan City", score:"2 – 1", date:"12 Jan 2026", result:"win" },
-  { competition:"Ligue 1", home:"Séwé SC", away:"FC USDI", score:"0 – 0", date:"03 May 2025", result:"draw" },
+  { competition:"Friendly", home:"FC USDI", away:"Abidjan City", score:"2 – 1", date:"12 Jan 2026", result:"win" },
+  { competition:"Friendly", home:"Séwé SC", away:"FC USDI", score:"0 – 0", date:"03 May 2025", result:"draw" },
   { competition:"Coupe de CIV", home:"FC USDI", away:"Afad Djékanou", score:"2 – 0", date:"26 Apr 2025", result:"win" },
-  { competition:"Ligue 1", home:"FC USDI", away:"Africa SC", score:"1 – 2", date:"19 Apr 2025", result:"loss" },
-  { competition:"Ligue 1", home:"ASEC Mimosas", away:"FC USDI", score:"2 – 1", date:"15 Oct 2025", result:"loss" },
-  { competition:"Ligue 1", home:"FC USDI", away:"Sol FC", score:"2 – 1", date:"05 Apr 2025", result:"win" },
-  { competition:"Ligue 1", home:"FC USDI", away:"Racing Club Ab.", score:"TBD", date:"17 May 2025", result:"" },
+  { competition:"Friendly", home:"FC USDI", away:"Africa SC", score:"1 – 2", date:"19 Apr 2025", result:"loss" },
+  { competition:"Friendly", home:"ASEC Mimosas", away:"FC USDI", score:"2 – 1", date:"15 Oct 2025", result:"loss" },
+  { competition:"Friendly", home:"FC USDI", away:"Sol FC", score:"2 – 1", date:"05 Apr 2025", result:"win" },
+  { competition:"Friendly", home:"FC USDI", away:"Racing Club Ab.", score:"TBD", date:"17 May 2025", result:"" },
 ];
