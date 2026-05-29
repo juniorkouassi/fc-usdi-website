@@ -27,7 +27,7 @@ const FIXTURES = [
   { competition:"Ligue 1", home:"Séwé SC", away:"FC USDI", score:"0 – 0", date:"03 May 2025", result:"draw" },
   { competition:"Coupe de CIV", home:"FC USDI", away:"Afad Djékanou", score:"2 – 0", date:"26 Apr 2025", result:"win" },
   { competition:"Ligue 1", home:"FC USDI", away:"Africa SC", score:"1 – 2", date:"19 Apr 2025", result:"loss" },
-  { competition:"Ligue 1", home:"ASEC Mimosas", away:"FC USDI", score:"1 – 3", date:"12 Apr 2025", result:"win" },
+  { competition:"Ligue 1", home:"ASEC Mimosas", away:"FC USDI", score:"2 – 1", date:"12 Apr 2025", result:"loss" },
   { competition:"Ligue 1", home:"FC USDI", away:"Sol FC", score:"2 – 1", date:"05 Apr 2025", result:"win" },
   { competition:"Ligue 1", home:"FC USDI", away:"Racing Club Ab.", score:"TBD", date:"17 May 2025", result:"" },
 ];
