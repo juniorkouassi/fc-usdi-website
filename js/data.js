@@ -25,7 +25,7 @@ const NEWS = [
 const FIXTURES = [
   { competition:"Friendly", home:"FC USDI", away:"Abidjan City", score:"2 – 1", date:"12 Jan 2026", result:"win" },
   { competition:"Friendly", home:"Séwé SC", away:"FC USDI", score:"0 – 0", date:"03 May 2025", result:"draw" },
-  { competition:"Coupe de CIV", home:"FC USDI", away:"Afad Djékanou", score:"2 – 0", date:"26 Apr 2025", result:"win" },
+  { competition:"Friendly", home:"FC USDI", away:"Afad Djékanou", score:"2 – 0", date:"26 Apr 2025", result:"win" },
   { competition:"Friendly", home:"FC USDI", away:"Africa SC", score:"1 – 2", date:"19 Apr 2025", result:"loss" },
   { competition:"Friendly", home:"ASEC Mimosas", away:"FC USDI", score:"2 – 1", date:"15 Oct 2025", result:"loss" },
   { competition:"Friendly", home:"FC USDI", away:"Sol FC", score:"2 – 1", date:"05 Apr 2025", result:"win" },
