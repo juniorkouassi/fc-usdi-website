@@ -29,5 +29,5 @@ const FIXTURES = [
   { competition:"Friendly", home:"Africa Sport", away:"FC USDI", score:"3 – 1", date:"09 Mar 2026", result:"loss" },
   { competition:"Friendly", home:"ASEC Mimosas", away:"FC USDI", score:"2 – 1", date:"15 Oct 2025", result:"loss" },
   { competition:"Friendly", home:"FC USDI", away:"Benfica CI", score:"1 – 1", date:"17 Oct 2025", result:"draw" },
-  { competition:"Friendly", home:"FC USDI", away:"Racing Club Ab.", score:"TBD", date:"17 May 2025", result:"" },
+  { competition:"Friendly", home:"SOA", away:"FC USDI", score:"2 – 1", date:"08 Oct 2025", result:"loss" },
 ];
