@@ -520,11 +520,12 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-    animation: popupIn .3s cubic-bezier(.34,1.56,.64,1) both;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
   }
-  @keyframes popupIn {
-    from { opacity:0; transform: scale(.85); }
-    to   { opacity:1; transform: scale(1); }
+  #announce-popup-overlay.fade-in #announce-popup {
+    animation: none;
   }
   #announce-popup a.popup-img-link {
     display: block;
