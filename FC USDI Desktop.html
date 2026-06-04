@@ -591,6 +591,12 @@
 <script>
   (function() {
     var overlay = document.getElementById('announce-popup-overlay');
+    // Popup expires 24 h after publication (2026-06-04)
+    var expiry = new Date('2026-06-06T00:00:00Z');
+    if (new Date() > expiry) {
+      overlay.classList.add('hidden');
+      return;
+    }
     document.getElementById('popup-close').addEventListener('click', function() {
       overlay.classList.add('hidden');
     });
