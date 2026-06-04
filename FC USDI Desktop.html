@@ -500,5 +500,82 @@
   });
 </script>
 
+<!-- ANNOUNCEMENT POPUP -->
+<style>
+  #announce-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  #announce-popup-overlay.hidden { display: none; }
+  #announce-popup {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    animation: popupIn .3s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes popupIn {
+    from { opacity:0; transform: scale(.85); }
+    to   { opacity:1; transform: scale(1); }
+  }
+  #announce-popup a.popup-img-link {
+    display: block;
+    line-height: 0;
+  }
+  #announce-popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    transition: background .2s;
+  }
+  #popup-close:hover { background: rgba(0,0,0,0.85); }
+</style>
+
+<div id="announce-popup-overlay">
+  <div id="announce-popup">
+    <a class="popup-img-link" href="https://www.facebook.com/share/p/17iwbeyqft/" target="_blank" rel="noopener">
+      <img src="img/Screenshot_2026.jpg" alt="Announcement" />
+    </a>
+    <button id="popup-close" aria-label="Close">&#x2715;</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var overlay = document.getElementById('announce-popup-overlay');
+    document.getElementById('popup-close').addEventListener('click', function() {
+      overlay.classList.add('hidden');
+    });
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.add('hidden');
+    });
+  })();
+</script>
+
 </body>
 </html>
