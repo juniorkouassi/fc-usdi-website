@@ -505,7 +505,7 @@
   #announce-popup-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.72);
+    background: rgba(0,0,0,0.78);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -513,19 +513,31 @@
     padding: 16px;
   }
   #announce-popup-overlay.hidden { display: none; }
+
+  /* Entry bounce-in, then continuous float */
+  @keyframes popupEnter {
+    0%   { opacity: 0; transform: scale(0.7) translateY(40px); }
+    60%  { opacity: 1; transform: scale(1.04) translateY(-8px); }
+    80%  { transform: scale(0.98) translateY(4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes popupFloat {
+    0%, 100% { transform: translateY(0)    rotate(-0.4deg); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 0 rgba(255,215,0,0); }
+    25%       { transform: translateY(-8px) rotate( 0.4deg); box-shadow: 0 36px 80px rgba(0,0,0,0.5), 0 0 24px 4px rgba(255,215,0,0.18); }
+    75%       { transform: translateY(-4px) rotate(-0.2deg); box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 14px 2px rgba(255,215,0,0.10); }
+  }
+
   #announce-popup {
     position: relative;
-    max-width: 420px;
+    /* Bigger on desktop */
+    max-width: 620px;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
-  }
-  #announce-popup-overlay.fade-in #announce-popup {
-    animation: none;
+    /* Entry animation, then hand off to float */
+    animation: popupEnter 0.55s cubic-bezier(.34,1.2,.64,1) forwards,
+               popupFloat  3.6s ease-in-out 0.55s infinite;
   }
   #announce-popup a.popup-img-link {
     display: block;
@@ -538,23 +550,33 @@
   }
   #popup-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.6);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1;
     transition: background .2s;
+    z-index: 2;
   }
-  #popup-close:hover { background: rgba(0,0,0,0.85); }
+  #popup-close:hover { background: rgba(0,0,0,0.9); }
+
+  /* Mobile: full-width but slightly smaller max */
+  @media (max-width: 600px) {
+    #announce-popup { max-width: 95vw; }
+    @keyframes popupFloat {
+      0%, 100% { transform: translateY(0); box-shadow: 0 16px 40px rgba(0,0,0,0.6); }
+      50%       { transform: translateY(-6px); box-shadow: 0 28px 60px rgba(0,0,0,0.5), 0 0 18px 3px rgba(255,215,0,0.15); }
+    }
+  }
 </style>
 
 <div id="announce-popup-overlay">
