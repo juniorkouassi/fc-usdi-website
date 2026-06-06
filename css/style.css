@@ -166,26 +166,8 @@ ul { list-style:none; }
   color: #000;
 }
 .btn-nav-primary:hover { background: #fff; }
-@keyframes shopShimmer {
-  0%, 100% { box-shadow: 0 2px 8px rgba(255,215,0,0.25); opacity: 1; }
-  50%       { box-shadow: 0 2px 14px rgba(255,215,0,0.5); opacity: 0.92; }
-}
-.nav-links .nav-shop-link {
-  background: var(--gold);
-  color: #000 !important;
-  font-weight: 900;
-  padding: 6px 14px;
-  border-radius: 100px;
-  animation: shopShimmer 2.8s ease-in-out infinite;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.nav-links .nav-shop-link:hover {
-  background: #fff;
-  color: #000 !important;
-  transform: scale(1.04);
-  animation: none;
-  box-shadow: 0 2px 16px rgba(255,215,0,0.4);
-}
+.nav-links .nav-shop-link { color: var(--gold); font-weight: 700; }
+.nav-links .nav-shop-link:hover { color: #fff; }
 .btn-nav-ghost {
   border: 1px solid var(--gray-1);
   color: var(--gray-4);
