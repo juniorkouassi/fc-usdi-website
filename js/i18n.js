@@ -38,7 +38,7 @@ const T = {
     'shop.p5.name':       'Short d\'Entraînement',
     'shop.p6.name':       'Fanion USDI FC',
     'shop.p7.name':       'Veste de Survêtement',
-    'shop.p8.name':       'Polo USDI FC',
+    'shop.p8.name':       'Survêtement Complet',
 
     /* Hero */
     'hero.season':        '⚽ Saison 2025 / 2026',
@@ -218,7 +218,7 @@ const T = {
     'shop.p5.name':       'Training Shorts',
     'shop.p6.name':       'USDI FC Pennant',
     'shop.p7.name':       'Track Jacket',
-    'shop.p8.name':       'USDI FC Polo',
+    'shop.p8.name':       'Track Jacket Full',
 
     /* Hero */
     'hero.season':        '⚽ Season 2025 / 2026',
