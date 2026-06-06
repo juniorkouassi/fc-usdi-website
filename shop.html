@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique — USDI FC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" crossorigin="anonymous" />
+  <style>
+    /* ── SHOP PAGE ── */
+    body { padding-bottom: 80px; }
+
+    /* ── HERO ── */
+    .shop-hero {
+      background: #080808;
+      padding: 80px 5% 60px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,215,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .shop-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(255,215,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .shop-hero-eye {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255,215,0,0.4);
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+    .shop-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .shop-hero-title em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .shop-hero-sub {
+      color: #999;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── FILTERS ── */
+    .shop-filters {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 2rem 5%;
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+      background: #0d0d0d;
+      position: sticky;
+      top: 60px;
+      z-index: 50;
+    }
+    .shop-filter-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #888;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .shop-filter-btn:hover {
+      border-color: rgba(255,215,0,0.5);
+      color: var(--gold);
+    }
+    .shop-filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #000;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .shop-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 5%;
+    }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: #111;
+      border: 1px solid rgba(255,215,0,0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 24px rgba(255,215,0,0.1);
+    }
+    .product-card[data-cat].hidden { display: none; }
+
+    /* image zone */
+    .product-img {
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .product-img i { position: relative; z-index: 1; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5)); }
+
+    /* unique gradients per product */
+    .pi-jersey-home  { background: linear-gradient(145deg, #080808 0%, #1a1200 55%, #3a2c00 80%, rgba(255,215,0,0.35) 100%); }
+    .pi-jersey-away  { background: linear-gradient(145deg, #b89a00 0%, #FFD700 45%, #e6c200 70%, #1a1a1a 100%); }
+    .pi-jersey-away i { color: #000; }
+    .pi-tshirt       { background: linear-gradient(145deg, #111 0%, #1c1c1c 60%, #222 100%); }
+    .pi-hoodie       { background: linear-gradient(145deg, #090909 0%, #181818 50%, #0f0e00 100%); }
+    .pi-shorts       { background: linear-gradient(145deg, #0d0d0d 0%, #181818 100%); }
+    .pi-cap          { background: linear-gradient(145deg, #080808 0%, #1a1a1a 60%, #1a1400 100%); }
+    .pi-jacket       { background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 50%, #222 100%); }
+    .pi-polo         { background: linear-gradient(145deg, #111 0%, #1c1c1c 55%, #2a2000 100%); }
+
+    /* gold shimmer line across image on hover */
+    .product-card:hover .product-img::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.12), transparent);
+      animation: shimmer 0.6s ease forwards;
+    }
+    @keyframes shimmer {
+      to { left: 130%; }
+    }
+
+    /* badge */
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    /* info */
+    .product-info {
+      padding: 1.2rem 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.9rem;
+    }
+    .product-cta {
+      display: block;
+      margin-top: auto;
+      background: var(--gold);
+      color: #000;
+      font-weight: 900;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 11px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .product-cta:hover { background: #fff; transform: scale(1.02); }
+
+    /* ── ORDER CTA BAND ── */
+    .shop-cta-band {
+      background: var(--gold);
+      padding: 3.5rem 5%;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .shop-cta-band-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #000;
+      margin-bottom: 0.6rem;
+    }
+    .shop-cta-band-sub {
+      color: rgba(0,0,0,0.65);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 0 auto 1.8rem;
+    }
+    .shop-cta-band-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #000;
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .shop-cta-band-btn:hover { background: #1a1a1a; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .shop-filters { top: 0; }
+    }
+    @media (max-width: 500px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .shop-section { padding: 1.5rem 4%; }
+      .product-info { padding: 0.9rem 0.9rem 1.1rem; }
+      .product-name { font-size: 0.8rem; }
+      .product-price { font-size: 1.2rem; }
+      .product-cta { font-size: 0.65rem; padding: 9px 6px; }
+      .shop-hero { padding: 60px 5% 40px; }
+      .shop-filters { gap: 0.4rem; padding: 1.2rem 4%; }
+      .shop-filter-btn { font-size: 0.68rem; padding: 6px 14px; }
+    }
+
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  <div data-i18n-html="announce">🔔 Détection de talents 2026 — <a href="FC USDI Desktop.html#club">Inscriptions ouvertes</a></div>
+  <div class="announce-socials">
+    <a href="https://www.instagram.com/unionsportivedeladiaspora/" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/unionsportivedeladiaspora" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://x.com/fcusdi" target="_blank" rel="noopener" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.youtube.com/channel/UCHBA-fiMs9pzXdzV5kR6Mww" target="_blank" rel="noopener" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.flickr.com/photos/202598756@N03/albums/" target="_blank" rel="noopener" title="Flickr"><i class="fa-brands fa-flickr"></i></a>
+    <div class="announce-lang">
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+        <span class="lang-sep"></span>
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="FC USDI Desktop.html">
+    <img src="img/logo.png" alt="USDI FC" class="nav-logo-img" />
+    <span class="nav-logo-text">USDI FC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="FC USDI Desktop.html" data-i18n="nav.home"><i class="fa-solid fa-house"></i>Accueil</a></li>
+    <li><a href="FC USDI Desktop.html#news" data-i18n="nav.news"><i class="fa-solid fa-newspaper"></i>Actualités</a></li>
+    <li><a href="teams.html" data-i18n="nav.team"><i class="fa-solid fa-shield-halved"></i>Équipe</a></li>
+    <li><a href="FC USDI Desktop.html#fixtures" data-i18n="nav.results"><i class="fa-solid fa-futbol"></i>Résultats</a></li>
+    <li><a href="FC USDI Desktop.html#club" data-i18n="nav.club"><i class="fa-solid fa-star"></i>Club</a></li>
+    <li><a href="FC USDI Desktop.html#contact" data-i18n="nav.contact"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+    <li><a href="shop.html" class="nav-shop-link active" data-i18n="nav.shop"><i class="fa-solid fa-bag-shopping"></i>Boutique</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+      <span class="lang-sep"></span>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+    </div>
+    <a href="https://wa.me/+436607118373" target="_blank" class="btn-nav btn-nav-primary" data-i18n="nav.join">Rejoindre</a>
+  </div>
+  <div class="nav-hamburger" id="hamburger" onclick="document.getElementById('nav-drawer').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-close" onclick="document.getElementById('nav-drawer').classList.remove('open')">✕</div>
+  <div class="nav-drawer-links">
+    <a href="FC USDI Desktop.html" data-i18n="nav.home" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-house"></i>Accueil</a>
+    <a href="FC USDI Desktop.html#news" data-i18n="nav.news" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-newspaper"></i>Actualités</a>
+    <a href="teams.html" data-i18n="nav.team" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-shield-halved"></i>Équipe</a>
+    <a href="FC USDI Desktop.html#fixtures" data-i18n="nav.results" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-futbol"></i>Résultats</a>
+    <a href="FC USDI Desktop.html#club" data-i18n="nav.club" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-star"></i>Club</a>
+    <a href="FC USDI Desktop.html#contact" data-i18n="nav.contact" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="shop.html" class="active" data-i18n="nav.shop" onclick="document.getElementById('nav-drawer').classList.remove('open')"><i class="fa-solid fa-bag-shopping"></i>Boutique</a>
+  </div>
+  <div class="nav-drawer-lang">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR <span class="fi fi-fr"></span></button>
+      <span class="lang-sep"></span>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN <span class="fi fi-gb"></span></button>
+    </div>
+  </div>
+  <a href="https://wa.me/+436607118373" target="_blank" class="nav-drawer-join" data-i18n="nav.join">Rejoindre</a>
+</div>
+
+<!-- SHOP HERO -->
+<section class="shop-hero">
+  <div class="shop-hero-eye" data-i18n="shop.hero.eye">2026 Collection</div>
+  <h1 class="shop-hero-title" data-i18n-html="shop.hero.title">OFFICIAL<br/><em>STORE</em></h1>
+  <p class="shop-hero-sub" data-i18n="shop.hero.sub">USDI FC jerseys, t-shirts &amp; accessories — wear the club colours.</p>
+</section>
+
+<!-- CATEGORY FILTERS -->
+<div class="shop-filters">
+  <button class="shop-filter-btn active" data-filter="all" data-i18n="shop.filter.all">All</button>
+  <button class="shop-filter-btn" data-filter="jersey" data-i18n="shop.filter.jersey">Jerseys</button>
+  <button class="shop-filter-btn" data-filter="tshirt" data-i18n="shop.filter.tshirt">T-Shirts</button>
+  <button class="shop-filter-btn" data-filter="training" data-i18n="shop.filter.training">Training</button>
+  <button class="shop-filter-btn" data-filter="accessories" data-i18n="shop.filter.acc">Accessories</button>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="shop-section">
+  <div class="shop-grid" id="shop-grid">
+
+    <!-- 1 — Home Jersey -->
+    <div class="product-card" data-cat="jersey">
+      <div class="product-img pi-jersey-home">
+        <i class="fa-solid fa-shirt" style="color:var(--gold)"></i>
+        <span class="product-badge" data-i18n="shop.badge.new">NEW</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p1.name">Home Jersey 2026</div>
+        <div class="product-price">€49.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20Maillot%20Domicile%202026" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 2 — Away Jersey -->
+    <div class="product-card" data-cat="jersey">
+      <div class="product-img pi-jersey-away">
+        <i class="fa-solid fa-shirt" style="color:#000"></i>
+        <span class="product-badge" data-i18n="shop.badge.new">NEW</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p2.name">Away Jersey 2026</div>
+        <div class="product-price">€49.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20Maillot%20Ext%C3%A9rieur%202026" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 3 — Training Tee -->
+    <div class="product-card" data-cat="tshirt">
+      <div class="product-img pi-tshirt">
+        <i class="fa-solid fa-shirt" style="color:var(--gold)"></i>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p3.name">Training T-Shirt</div>
+        <div class="product-price">€29.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20T-Shirt%20Training" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 4 — Hoodie -->
+    <div class="product-card" data-cat="training">
+      <div class="product-img pi-hoodie">
+        <i class="fa-solid fa-shirt" style="color:var(--gold); font-size:1.4em"></i>
+        <span class="product-badge" data-i18n="shop.badge.best">BEST SELLER</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p4.name">USDI FC Hoodie</div>
+        <div class="product-price">€54.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20Hoodie%20USDI%20FC" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 5 — Shorts -->
+    <div class="product-card" data-cat="training">
+      <div class="product-img pi-shorts">
+        <i class="fa-solid fa-person-running" style="color:var(--gold)"></i>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p5.name">Training Shorts</div>
+        <div class="product-price">€24.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20Short%20d%27Entra%C3%AEnement" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 6 — Cap -->
+    <div class="product-card" data-cat="accessories">
+      <div class="product-img pi-cap">
+        <i class="fa-solid fa-hat-cowboy" style="color:var(--gold)"></i>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p6.name">USDI FC Cap</div>
+        <div class="product-price">€19.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20la%20Casquette%20USDI%20FC" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 7 — Track Jacket -->
+    <div class="product-card" data-cat="training">
+      <div class="product-img pi-jacket">
+        <i class="fa-solid fa-vest" style="color:var(--gold)"></i>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p7.name">Track Jacket</div>
+        <div class="product-price">€64.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20la%20Veste%20de%20Surv%C3%AAtement" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+    <!-- 8 — Polo -->
+    <div class="product-card" data-cat="tshirt">
+      <div class="product-img pi-polo">
+        <i class="fa-solid fa-shirt" style="color:var(--gold)"></i>
+        <span class="product-badge" data-i18n="shop.badge.best">BEST SELLER</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name" data-i18n="shop.p8.name">USDI FC Polo</div>
+        <div class="product-price">€34.99</div>
+        <a class="product-cta" href="https://wa.me/+436607118373?text=Je%20voudrais%20commander%20le%20Polo%20USDI%20FC" target="_blank" rel="noopener" data-i18n="shop.order">Order</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ORDER CTA BAND -->
+<div class="shop-cta-band">
+  <div class="shop-cta-band-title" data-i18n="shop.cta.title">How to order?</div>
+  <p class="shop-cta-band-sub" data-i18n="shop.cta.sub">Contact us on WhatsApp to place your order, check availability and delivery times.</p>
+  <a class="shop-cta-band-btn" href="https://wa.me/+436607118373" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp" style="font-size:1.2em"></i>
+    <span data-i18n="shop.cta.btn">Order on WhatsApp →</span>
+  </a>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navigation mobile">
+  <div class="bottom-nav-inner">
+    <a href="FC USDI Desktop.html" class="bottom-nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="nav.home">Accueil</span>
+    </a>
+    <a href="FC USDI Desktop.html#news" class="bottom-nav-item">
+      <i class="fa-solid fa-newspaper"></i>
+      <span data-i18n="nav.news">Actualités</span>
+    </a>
+    <a href="FC USDI Desktop.html#fixtures" class="bottom-nav-item">
+      <i class="fa-solid fa-futbol"></i>
+      <span data-i18n="nav.results">Résultats</span>
+    </a>
+    <a href="FC USDI Desktop.html#club" class="bottom-nav-item">
+      <i class="fa-solid fa-star"></i>
+      <span data-i18n="nav.club">Club</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item bottom-nav-join active">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span data-i18n="nav.shop">Boutique</span>
+    </a>
+  </div>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /* Category filter */
+  document.querySelectorAll('.shop-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.shop-filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.product-card').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

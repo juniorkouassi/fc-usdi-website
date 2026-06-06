@@ -166,6 +166,8 @@ ul { list-style:none; }
   color: #000;
 }
 .btn-nav-primary:hover { background: #fff; }
+.nav-links .nav-shop-link { color: var(--gold); font-weight: 700; }
+.nav-links .nav-shop-link:hover { color: #fff; }
 .btn-nav-ghost {
   border: 1px solid var(--gray-1);
   color: var(--gray-4);
