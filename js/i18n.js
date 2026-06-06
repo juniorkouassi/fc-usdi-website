@@ -39,6 +39,7 @@ const T = {
     'shop.p6.name':       'Fanion USDI FC',
     'shop.p7.name':       'Veste de Survêtement',
     'shop.p8.name':       'Survêtement Complet',
+    'shop.p9.name':       'Track Jacket Top',
 
     /* Hero */
     'hero.season':        '⚽ Saison 2025 / 2026',
@@ -219,6 +220,7 @@ const T = {
     'shop.p6.name':       'USDI FC Pennant',
     'shop.p7.name':       'Track Jacket',
     'shop.p8.name':       'Track Jacket Full',
+    'shop.p9.name':       'Track Jacket Top',
 
     /* Hero */
     'hero.season':        '⚽ Season 2025 / 2026',
