@@ -72,7 +72,7 @@ const T = {
     'tab.club':           'Club',
     'tab.academy':        'Formation',
     'tab.gallery':        'Galerie',
-    'news.featured.title':'USDI FC 3 – 1 AS Tanda : Une victoire de caractère',
+    'news.featured.title':'USDI FC 1 – 1 BENFICA CI : Un match difficile',
     'news.featured.meta': '10 Mai 2026 · 5 min de lecture',
     /* News tags */
     'news.tag.transfer':  'Transfert',
@@ -253,7 +253,7 @@ const T = {
     'tab.club':           'Club',
     'tab.academy':        'Academy',
     'tab.gallery':        'Gallery',
-    'news.featured.title':'USDI FC 3 – 1 AS Tanda: A character win',
+    'news.featured.title':'USDI FC 1 – 1 BENFICA CI: A tough match',
     'news.featured.meta': '10 May 2026 · 5 min read',
     /* News tags */
     'news.tag.transfer':  'Transfer',
